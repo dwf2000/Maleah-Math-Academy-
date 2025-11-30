@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎀 Maleah's Stuffed Animal Math Academy 🎀</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF69B4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-light: #FFE4EC;
+            --pink-main: #FF69B4;
+            --pink-dark: #FF1493;
+            --purple-light: #E6D5FF;
+            --purple-main: #9370DB;
+            --purple-dark: #663399;
+            --red-accent: #FF6B6B;
+            --white: #FFFFFF;
+            --cream: #FFF8F5;
+            --text-dark: #4A3728;
+            --success: #7ED957;
+            --warning: #FFB347;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Mobile touch fixes */
+        button, input, a {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--purple-light) 50%, var(--cream) 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 18px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--pink-main) 0%, var(--purple-main) 100%);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            color: white;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            color: var(--cream);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: white;
+            padding: 15px 20px;
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 25px;
+            background: var(--pink-light);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink-main), var(--purple-main));
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation */
+        .lesson-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 20px;
+            background: white;
+            margin: 0 20px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--pink-light);
+            color: var(--text-dark);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .nav-btn:hover {
+            background: var(--pink-main);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--pink-main), var(--purple-main));
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .nav-btn.completed::after {
+            content: ' ✓';
+            color: var(--success);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        /* Lesson Cards */
+        .lesson-card {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--pink-light);
+            display: none;
+        }
+
+        .lesson-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lesson-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--pink-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lesson-title .emoji {
+            font-size: 2.5rem;
+        }
+
+        /* Concept Box */
+        .concept-box {
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--purple-light) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid var(--pink-main);
+        }
+
+        .concept-box h3 {
+            color: var(--purple-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Analogy Box */
+        .analogy-box {
+            background: var(--cream);
+            border: 3px dashed var(--pink-main);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .analogy-box h4 {
+            color: var(--pink-dark);
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .analogy-box .stuffed-animal {
+            font-size: 2rem;
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Example Box */
+        .example-box {
+            background: white;
+            border: 2px solid var(--purple-main);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .example-box h4 {
+            color: var(--purple-dark);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .math-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            background: var(--pink-light);
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--cream);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            background: var(--pink-main);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        /* Number Line */
+        .number-line-container {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .number-line {
+            position: relative;
+            height: 60px;
+            background: linear-gradient(to right, var(--pink-light), var(--purple-light));
+            border-radius: 30px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .number-mark {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .number-mark::before {
+            content: '|';
+            color: var(--purple-dark);
+        }
+
+        .number-mark.zero {
+            color: var(--red-accent);
+            font-size: 1.1rem;
+        }
+
+        .number-mark.negative {
+            color: var(--purple-dark);
+        }
+
+        .number-mark.positive {
+            color: var(--pink-dark);
+        }
+
+        /* Interactive Practice */
+        .practice-section {
+            background: linear-gradient(135deg, var(--purple-light) 0%, var(--pink-light) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .practice-section h3 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--purple-dark);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .question p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid var(--pink-light);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-family: 'Nunito', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: var(--pink-main);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, var(--pink-main), var(--purple-main));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .check-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .feedback.correct {
+            background: #D4EDDA;
+            color: #155724;
+            border: 2px solid var(--success);
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #FCE4EC;
+            color: #C62828;
+            border: 2px solid var(--red-accent);
+            display: block;
+        }
+
+        /* Tips Box */
+        .tips-box {
+            background: var(--warning);
+            color: var(--text-dark);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tips-box h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Rules Summary */
+        .rules-summary {
+            background: white;
+            border: 3px solid var(--success);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .rules-summary h4 {
+            color: var(--purple-dark);
+            margin-bottom: 15px;
+        }
+
+        .rule {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: var(--pink-light);
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Card Game Visualization */
+        .card-game {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .game-card {
+            width: 80px;
+            height: 110px;
+            background: white;
+            border: 3px solid var(--purple-main);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-card.positive {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            color: #2E7D32;
+        }
+
+        .game-card.negative {
+            background: linear-gradient(135deg, #FCE4EC, #F8BBD9);
+            color: #C62828;
+        }
+
+        /* Shelf Visualization */
+        .shelf-visual {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            min-height: 200px;
+        }
+
+        .shelf {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .shelf-label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .shelf-bar {
+            width: 40px;
+            background: linear-gradient(180deg, var(--pink-main), var(--purple-main));
+            border-radius: 5px 5px 0 0;
+        }
+
+        .stuffed-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Equation Solver Visual */
+        .equation-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .balance-scale {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .scale-side {
+            width: 45%;
+            min-height: 100px;
+            background: var(--pink-light);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 3px solid var(--pink-main);
+        }
+
+        .scale-middle {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--purple-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .lesson-title {
+                font-size: 1.4rem;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .lesson-card {
+                padding: 20px;
+            }
+        }
+
+        /* Highlight important text */
+        .highlight {
+            background: linear-gradient(120deg, var(--pink-light) 0%, var(--pink-light) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 90%;
+            font-weight: 700;
+        }
+
+        .key-point {
+            color: var(--pink-dark);
+            font-weight: 800;
+        }
+
+        /* Complete Lesson Button */
+        .complete-btn {
+            background: linear-gradient(135deg, var(--success), #4CAF50);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .complete-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(126, 217, 87, 0.4);
+        }
+    </style>
+</head>
+<body ontouchstart="">
+    <header class="header">
+        <h1>🎀 Maleah's Stuffed Animal Math Academy 🎀</h1>
+        <p class="subtitle">Learning math with your fluffy friends! 🧸✨</p>
+    </header>
+
+    <div class="progress-container">
+        <p style="margin-bottom: 10px; font-weight: 600;">Your Progress: <span id="progress-percent">0</span>%</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%">
+                <span class="progress-text" id="progress-stars">⭐</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="lesson-nav">
+        <button class="nav-btn active" data-lesson="1" onclick="showLesson(1)">1. Number Lines</button>
+        <button class="nav-btn" data-lesson="2" onclick="showLesson(2)">2. Zero Pairs</button>
+        <button class="nav-btn" data-lesson="3" onclick="showLesson(3)">3. Double Negatives</button>
+        <button class="nav-btn" data-lesson="4" onclick="showLesson(4)">4. Distance</button>
+        <button class="nav-btn" data-lesson="5" onclick="showLesson(5)">5. Word Problems</button>
+        <button class="nav-btn" data-lesson="6" onclick="showLesson(6)">6. Solving Equations</button>
+        <button class="nav-btn" data-lesson="7" onclick="showLesson(7)">7. 💰 Money Tracking</button>
+    </nav>
+
+    <main class="main-content">
+        <!-- LESSON 1: Number Lines -->
+        <section class="lesson-card active" id="lesson-1">
+            <h2 class="lesson-title"><span class="emoji">🏠</span> Number Lines: Organizing Your Collection</h2>
+            
+            <div class="concept-box">
+                <h3>🎯 What's a Number Line?</h3>
+                <p>Think of a number line like <span class="highlight">a really long shelf system</span> where you organize your stuffed animals by number! Zero is in the middle - that's like the main doorway to your room.</p>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 Stuffed Animal Analogy</h4>
+                <p>Imagine your room has one SUPER long shelf that goes through the walls:</p>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li><strong>Positive numbers (right side)</strong> = Shelves where you PUT stuffed animals <span class="stuffed-animal">🧸</span></li>
+                    <li><strong>Negative numbers (left side)</strong> = Shelves where you OWE stuffed animals (like you borrowed some) <span class="stuffed-animal">🐻</span></li>
+                    <li><strong>Zero (middle)</strong> = The door - you don't have any and don't owe any</li>
+                </ul>
+            </div>
+
+            <div class="number-line-container">
+                <p style="text-align: center; font-weight: 600; margin-bottom: 10px;">Your Stuffed Animal Shelf Number Line:</p>
+                <div class="number-line">
+                    <span class="number-mark negative">-5</span>
+                    <span class="number-mark negative">-4</span>
+                    <span class="number-mark negative">-3</span>
+                    <span class="number-mark negative">-2</span>
+                    <span class="number-mark negative">-1</span>
+                    <span class="number-mark zero">0</span>
+                    <span class="number-mark positive">1</span>
+                    <span class="number-mark positive">2</span>
+                    <span class="number-mark positive">3</span>
+                    <span class="number-mark positive">4</span>
+                    <span class="number-mark positive">5</span>
+                </div>
+                <p style="text-align: center; font-size: 0.9rem; color: var(--purple-dark);">← You OWE stuffed animals | You HAVE stuffed animals →</p>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example from Your Homework (Question 1):</h4>
+                <p><strong>Problem:</strong> Diamond started at 10 on the number line and ended at -4. What number did she add?</p>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Understand the situation:</strong><br>
+                        Think of it like: You HAD 10 stuffed animals. Now you OWE 4 (you're at -4). What happened?
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Find how far you moved:</strong><br>
+                        From 10 to -4, you moved: 10 down to 0 (that's 10 steps), then 0 down to -4 (that's 4 more steps).
+                        <br>Total: 10 + 4 = <span class="key-point">14 steps to the LEFT</span>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Moving LEFT = Adding a NEGATIVE number:</strong><br>
+                        <div class="math-display">10 + (-14) = -4 ✓</div>
+                        Diamond added <span class="key-point">-14</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rules-summary">
+                <h4>📌 Key Rules to Remember:</h4>
+                <div class="rule">➡️ Moving RIGHT = Adding POSITIVE numbers</div>
+                <div class="rule">⬅️ Moving LEFT = Adding NEGATIVE numbers</div>
+                <div class="rule">🔢 To find what was added: End - Start = What was added</div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎮 Practice Time!</h3>
+                
+                <div class="question">
+                    <p><strong>Q1:</strong> You start at position 5 on the number line and end at position -3. What number did you add?</p>
+                    <input type="number" class="answer-input" id="q1-1" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q1-1', -8, 'Think: 5 to 0 is 5 steps left, then 0 to -3 is 3 more steps left. Total: 8 steps left = -8')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q1-1"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q2:</strong> You start at -7 and add +10. Where do you end up?</p>
+                    <input type="number" class="answer-input" id="q1-2" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q1-2', 3, 'You moved 10 steps to the right! -7 + 10 = 3')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q1-2"></div>
+                </div>
+            </div>
+
+            <button class="complete-btn" onclick="completeLesson(1)">I Got This! Next Lesson ✨</button>
+        </section>
+
+        <!-- LESSON 2: Zero Pairs (Additive Inverses) -->
+        <section class="lesson-card" id="lesson-2">
+            <h2 class="lesson-title"><span class="emoji">👯</span> Zero Pairs: Best Friends That Cancel Out!</h2>
+            
+            <div class="concept-box">
+                <h3>🎯 What are Additive Inverses (Zero Pairs)?</h3>
+                <p>Some numbers are like <span class="highlight">best friends who always balance each other out perfectly</span>. When you add them together, they equal ZERO. We call these "additive inverses" or "zero pairs."</p>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 The Trading Game Analogy</h4>
+                <p>Imagine you're playing a game where:</p>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li><strong>+3</strong> = You GET 3 new stuffed animals <span class="stuffed-animal">🧸🧸🧸</span></li>
+                    <li><strong>-3</strong> = You GIVE AWAY 3 stuffed animals</li>
+                </ul>
+                <p>If you get 3 and then give away 3... you're back where you started! <span class="key-point">+3 and -3 are BEST FRIENDS that cancel out!</span></p>
+                <div class="math-display">+3 + (-3) = 0</div>
+            </div>
+
+            <div class="card-game">
+                <div class="game-card positive">+3</div>
+                <div class="game-card negative">-3</div>
+                <span style="font-size: 2rem; display: flex; align-items: center;">=</span>
+                <div class="game-card" style="background: var(--cream);">0</div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example from Your Homework (Question 4b):</h4>
+                <p><strong>Problem:</strong> Jesse has cards: 3, -5, 9, -6. His total is 1. He picks up two more cards that DON'T change his total. What cards could he pick?</p>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>What doesn't change the total?</strong><br>
+                        We need two cards that ADD UP TO ZERO! That's a zero pair!
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Examples of zero pairs:</strong><br>
+                        <div class="card-game" style="margin: 10px 0;">
+                            <div class="game-card positive" style="width: 60px; height: 80px; font-size: 1.3rem;">+2</div>
+                            <div class="game-card negative" style="width: 60px; height: 80px; font-size: 1.3rem;">-2</div>
+                        </div>
+                        <div class="card-game" style="margin: 10px 0;">
+                            <div class="game-card positive" style="width: 60px; height: 80px; font-size: 1.3rem;">+7</div>
+                            <div class="game-card negative" style="width: 60px; height: 80px; font-size: 1.3rem;">-7</div>
+                        </div>
+                        <div class="card-game" style="margin: 10px 0;">
+                            <div class="game-card positive" style="width: 60px; height: 80px; font-size: 1.3rem;">+100</div>
+                            <div class="game-card negative" style="width: 60px; height: 80px; font-size: 1.3rem;">-100</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Answer:</strong> Any pair like +5 and -5, or +10 and -10!<br>
+                        <div class="math-display">1 + 5 + (-5) = 1 ✓ (Total unchanged!)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h4>💡 Quick Tip</h4>
+                <p>The additive inverse of ANY number is just that number with the OPPOSITE sign:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Inverse of +7 → -7</li>
+                    <li>Inverse of -15 → +15</li>
+                    <li>Inverse of 0 → 0 (zero is its own best friend! 😊)</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎮 Practice Time!</h3>
+                
+                <div class="question">
+                    <p><strong>Q1:</strong> What is the additive inverse (zero pair partner) of -12?</p>
+                    <input type="number" class="answer-input" id="q2-1" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q2-1', 12, 'The opposite of -12 is +12! Together: -12 + 12 = 0')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q2-1"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q2:</strong> You have cards 4, -6, and ?. The total equals zero. What is the missing card?</p>
+                    <input type="number" class="answer-input" id="q2-2" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q2-2', 2, '4 + (-6) = -2. To get to 0, you need +2!')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q2-2"></div>
+                </div>
+            </div>
+
+            <button class="complete-btn" onclick="completeLesson(2)">I Got This! Next Lesson ✨</button>
+        </section>
+
+        <!-- LESSON 3: Subtracting Negatives -->
+        <section class="lesson-card" id="lesson-3">
+            <h2 class="lesson-title"><span class="emoji">🔄</span> The "Double No" Rule!</h2>
+            
+            <div class="concept-box">
+                <h3>🎯 Subtracting a Negative Number</h3>
+                <p>Here's one of math's coolest tricks: <span class="highlight">Subtracting a negative is the SAME as adding a positive!</span></p>
+                <div class="math-display">a - (-b) = a + b</div>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 The "Taking Away a Debt" Analogy</h4>
+                <p>Imagine this situation in Roblox or SIMS:</p>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li>Your character OWES 5 coins to someone (that's -5)</li>
+                    <li>A magical fairy comes and <strong>TAKES AWAY that debt!</strong></li>
+                    <li>Taking away something bad = Getting something good!</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Real life example:</strong> If your friend says "You DON'T have to give me those 5 stuffed animals you owe me," that's like GETTING 5 stuffed animals!</p>
+                <div class="math-display">0 - (-5) = 0 + 5 = 5 🎉</div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example from Your Homework (Question 6):</h4>
+                <p><strong>Problem:</strong> Jeanette has score -10. Bryan takes away her -8 card. What's her new score?</p>
+                
+                <div class="card-game">
+                    <div class="game-card negative">-10</div>
+                    <span style="font-size: 2rem;">−</span>
+                    <div class="game-card negative">-8</div>
+                    <span style="font-size: 2rem;">=</span>
+                    <span style="font-size: 2rem;">?</span>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Write what happened:</strong><br>
+                        Start: -10<br>
+                        Action: Subtract (take away) a -8
+                        <div class="math-display">-10 - (-8)</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Apply the rule: Subtracting negative = Adding positive</strong><br>
+                        <div class="math-display">-10 - (-8) = -10 + 8</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Calculate:</strong><br>
+                        Think: You owe 10, but someone gives you 8. Now you only owe 2!
+                        <div class="math-display">-10 + 8 = -2 ✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rules-summary">
+                <h4>📌 The Double Sign Rules:</h4>
+                <div class="rule">➕ Positive + Positive = Positive (+)(+) = +</div>
+                <div class="rule">➖ Negative + Negative = Negative (−)(−) stays negative when ADDING</div>
+                <div class="rule">🔄 BUT when you SUBTRACT: − (−) = + (two negatives make positive!)</div>
+                <div class="rule">🔄 And: − (+) = − (subtracting positive stays negative)</div>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎮 Practice Time!</h3>
+                
+                <div class="question">
+                    <p><strong>Q1:</strong> Calculate: 5 - (-3) = ?</p>
+                    <input type="number" class="answer-input" id="q3-1" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q3-1', 8, '5 - (-3) = 5 + 3 = 8! Taking away a negative is adding!')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q3-1"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q2:</strong> Calculate: -15 - (-7) = ?</p>
+                    <input type="number" class="answer-input" id="q3-2" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q3-2', -8, '-15 - (-7) = -15 + 7 = -8')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q3-2"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q3:</strong> Calculate: -20 - (-20) = ?</p>
+                    <input type="number" class="answer-input" id="q3-3" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q3-3', 0, '-20 - (-20) = -20 + 20 = 0! Zero pair!')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q3-3"></div>
+                </div>
+            </div>
+
+            <button class="complete-btn" onclick="completeLesson(3)">I Got This! Next Lesson ✨</button>
+        </section>
+
+        <!-- LESSON 4: Absolute Value & Distance -->
+        <section class="lesson-card" id="lesson-4">
+            <h2 class="lesson-title"><span class="emoji">📏</span> Absolute Value: How Far, Not Which Way!</h2>
+            
+            <div class="concept-box">
+                <h3>🎯 What is Absolute Value?</h3>
+                <p>Absolute value is <span class="highlight">how far a number is from zero</span>, ignoring which direction. It's always positive (or zero)!</p>
+                <p>We write it with bars: |number|</p>
+                <div class="math-display">|-5| = 5 &nbsp;&nbsp;&nbsp; |5| = 5 &nbsp;&nbsp;&nbsp; |0| = 0</div>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 The Shelf Distance Analogy</h4>
+                <p>Your stuffed animals are organized on shelves numbered from the door (0):</p>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li>Shelf -5 is 5 steps to the LEFT of the door</li>
+                    <li>Shelf +5 is 5 steps to the RIGHT of the door</li>
+                    <li><strong>Both are exactly 5 steps away from the door!</strong></li>
+                </ul>
+                <p>Absolute value = "How many steps from the door?" (doesn't matter which direction!)</p>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example from Your Homework (Question 1c):</h4>
+                <p><strong>Problem:</strong> Express the distance between 10 and -4 using absolute value.</p>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Distance formula:</strong><br>
+                        Distance between two numbers = |first number - second number|
+                        <div class="math-display">Distance = |10 - (-4)|</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Simplify inside the bars:</strong><br>
+                        Remember: subtracting negative = adding positive!
+                        <div class="math-display">|10 - (-4)| = |10 + 4| = |14|</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Find the absolute value:</strong><br>
+                        <div class="math-display">|14| = 14</div>
+                        The distance is <span class="key-point">14 units</span>! ✓
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h4>💡 Pro Tip for Distance Problems</h4>
+                <p>You can also think of it as: Count the jumps from one number to the other!</p>
+                <p>From -4 to 0 = 4 jumps, then 0 to 10 = 10 jumps. Total: 4 + 10 = 14! ✓</p>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎮 Practice Time!</h3>
+                
+                <div class="question">
+                    <p><strong>Q1:</strong> What is |-17|?</p>
+                    <input type="number" class="answer-input" id="q4-1" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q4-1', 17, '|-17| = 17. Distance from 0 is always positive!')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q4-1"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q2:</strong> What is the distance between -8 and 5? (Use: |a - b|)</p>
+                    <input type="number" class="answer-input" id="q4-2" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q4-2', 13, '|-8 - 5| = |-13| = 13. Or count: 8 + 5 = 13!')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q4-2"></div>
+                </div>
+            </div>
+
+            <button class="complete-btn" onclick="completeLesson(4)">I Got This! Next Lesson ✨</button>
+        </section>
+
+        <!-- LESSON 5: Word Problems -->
+        <section class="lesson-card" id="lesson-5">
+            <h2 class="lesson-title"><span class="emoji">📖</span> Word Problems: Stories with Numbers!</h2>
+            
+            <div class="concept-box">
+                <h3>🎯 Turning Stories into Math</h3>
+                <p>Word problems are just <span class="highlight">stories that need math to solve</span>. The trick is finding the hidden math!</p>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 Building Houses for Your Stuffed Animals</h4>
+                <p>Think of word problems like planning a cardboard house:</p>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li><strong>What do I know?</strong> = Materials I have</li>
+                    <li><strong>What do I need to find?</strong> = What I'm building</li>
+                    <li><strong>Key words</strong> = Building instructions</li>
+                </ul>
+            </div>
+
+            <div class="rules-summary">
+                <h4>📌 Word Problem Key Words:</h4>
+                <div class="rule">ADD ➕: sum, total, combined, together, more than, increased by</div>
+                <div class="rule">SUBTRACT ➖: difference, less than, decreased by, remaining, left</div>
+                <div class="rule">MULTIPLY ✖️: times, product, each, per, of (with fractions)</div>
+                <div class="rule">DIVIDE ➗: quotient, split, shared equally, per (each gets), ratio</div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example from Your Homework (Question 5):</h4>
+                <p><strong>Problem:</strong> Michael has a 16-foot board to cut into 11 equal shelves. The saw blade removes 0.125 inches per cut. How much total length is lost?</p>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Understand what's happening:</strong><br>
+                        Think of it like cutting paper for 11 stuffed animal name tags. If you have one long strip and want 11 pieces, how many CUTS do you make?<br>
+                        <span class="key-point">Answer: 10 cuts!</span> (One cut makes 2 pieces, two cuts make 3 pieces, etc.)
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Calculate total loss:</strong><br>
+                        Each cut loses 0.125 inches × 10 cuts
+                        <div class="math-display">0.125 × 10 = 1.25 inches lost</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>For the shelf length (Part b):</strong><br>
+                        1. Convert feet to inches: 16 ft × 12 = 192 inches<br>
+                        2. Subtract loss: 192 - 1.25 = 190.75 inches remaining<br>
+                        3. Divide by 11 shelves: 190.75 ÷ 11 = <span class="key-point">17.34 inches per shelf</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Another Example (Temperature - Question 7b):</h4>
+                <p><strong>Problem:</strong> Temperature dropped 7°F each hour for 4 hours. Final temp was -10°F. What was the starting temp?</p>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Total change:</strong><br>
+                        7°F drop × 4 hours = 28°F total drop
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Work BACKWARDS:</strong><br>
+                        If it DROPPED 28° and ended at -10°...<br>
+                        It must have STARTED 28° HIGHER!
+                        <div class="math-display">-10 + 28 = 18°F starting temp ✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h4>💡 Word Problem Strategy: CUBES</h4>
+                <ul style="margin-left: 20px;">
+                    <li><strong>C</strong>ircle the numbers</li>
+                    <li><strong>U</strong>nderline the question</li>
+                    <li><strong>B</strong>ox key words (add, subtract, each, total)</li>
+                    <li><strong>E</strong>liminate unnecessary info</li>
+                    <li><strong>S</strong>olve and check!</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎮 Practice Time!</h3>
+                
+                <div class="question">
+                    <p><strong>Q1:</strong> You have 24 stuffed animals. You want to put them equally on 6 shelves. How many on each shelf?</p>
+                    <input type="number" class="answer-input" id="q5-1" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q5-1', 4, '24 ÷ 6 = 4 stuffed animals per shelf!')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q5-1"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q2:</strong> To make 7 shelves from one board, how many cuts do you need?</p>
+                    <input type="number" class="answer-input" id="q5-2" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q5-2', 6, 'Always: pieces - 1 = cuts. So 7 - 1 = 6 cuts!')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q5-2"></div>
+                </div>
+            </div>
+
+            <button class="complete-btn" onclick="completeLesson(5)">I Got This! Next Lesson ✨</button>
+        </section>
+
+        <!-- LESSON 6: Solving Equations -->
+        <section class="lesson-card" id="lesson-6">
+            <h2 class="lesson-title"><span class="emoji">🔍</span> Solving Equations: Finding the Missing Pet!</h2>
+            
+            <div class="concept-box">
+                <h3>🎯 What is Solving an Equation?</h3>
+                <p>An equation is like a <span class="highlight">balanced scale</span> - both sides must be equal. Solving means finding what number the variable (like x) represents!</p>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 The Missing Stuffed Animal Mystery</h4>
+                <p>Imagine you're organizing stuffed animals, and some are hiding in a mystery box (that's "x")!</p>
+                <p><strong>Example:</strong> "3 mystery boxes plus 6 single stuffies equals 15 stuffies total"</p>
+                <div class="math-display">3x + 6 = 15</div>
+                <p>Your job: Figure out how many are in EACH mystery box!</p>
+            </div>
+
+            <div class="balance-scale">
+                <div class="scale-side">
+                    <p><strong>Left Side</strong></p>
+                    <p style="font-size: 1.5rem;">3x + 6</p>
+                </div>
+                <div class="scale-middle">=</div>
+                <div class="scale-side">
+                    <p><strong>Right Side</strong></p>
+                    <p style="font-size: 1.5rem;">15</p>
+                </div>
+            </div>
+
+            <div class="rules-summary">
+                <h4>📌 The Golden Rule of Equations:</h4>
+                <div class="rule">⚖️ Whatever you do to ONE side, you MUST do to the OTHER side!</div>
+                <div class="rule">🎯 Goal: Get the variable ALONE on one side</div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example 1: 5x + 4 = 19</h4>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Get rid of the +4:</strong><br>
+                        Subtract 4 from BOTH sides (to undo the +4)
+                        <div class="math-display">5x + 4 - 4 = 19 - 4</div>
+                        <div class="math-display">5x = 15</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Get rid of the ×5:</strong><br>
+                        Divide BOTH sides by 5 (to undo the ×5)
+                        <div class="math-display">5x ÷ 5 = 15 ÷ 5</div>
+                        <div class="math-display">x = 3 ✓</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Check your answer:</strong><br>
+                        Plug x = 3 back in: 5(3) + 4 = 15 + 4 = 19 ✓
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example 2: 2(x + 4) = 18</h4>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Option A - Distribute first:</strong><br>
+                        <div class="math-display">2x + 8 = 18</div>
+                        <div class="math-display">2x = 10</div>
+                        <div class="math-display">x = 5 ✓</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Option B - Divide first:</strong><br>
+                        <div class="math-display">2(x + 4) ÷ 2 = 18 ÷ 2</div>
+                        <div class="math-display">x + 4 = 9</div>
+                        <div class="math-display">x = 5 ✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Tricky One: 15x + 14 = 19</h4>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Subtract 14 from both sides:</strong>
+                        <div class="math-display">15x + 14 - 14 = 19 - 14</div>
+                        <div class="math-display">15x = 5</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Divide both sides by 15:</strong>
+                        <div class="math-display">x = 5 ÷ 15 = 5/15 = 1/3</div>
+                        <p><span class="key-point">x = 1/3</span> (not a whole number, and that's OK!)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h4>💡 Remember: "Undo" Operations</h4>
+                <ul style="margin-left: 20px;">
+                    <li>To undo <strong>+ something</strong> → subtract it</li>
+                    <li>To undo <strong>- something</strong> → add it</li>
+                    <li>To undo <strong>× something</strong> → divide by it</li>
+                    <li>To undo <strong>÷ something</strong> → multiply by it</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Order:</strong> Undo addition/subtraction FIRST, then multiplication/division!</p>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎮 Practice Time!</h3>
+                
+                <div class="question">
+                    <p><strong>Q1:</strong> Solve: 4x + 7 = 23</p>
+                    <input type="number" class="answer-input" id="q6-1" placeholder="Enter x = ...">
+                    <button class="check-btn" onclick="checkAnswer('q6-1', 4, '4x + 7 = 23 → 4x = 16 → x = 4')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q6-1"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q2:</strong> Solve: 3(x + 2) = 21</p>
+                    <input type="number" class="answer-input" id="q6-2" placeholder="Enter x = ...">
+                    <button class="check-btn" onclick="checkAnswer('q6-2', 5, '3(x+2) = 21 → x+2 = 7 → x = 5')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q6-2"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q3:</strong> Solve: -2x + 9 = 25</p>
+                    <input type="number" class="answer-input" id="q6-3" placeholder="Enter x = ...">
+                    <button class="check-btn" onclick="checkAnswer('q6-3', -8, '-2x + 9 = 25 → -2x = 16 → x = -8')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q6-3"></div>
+                </div>
+            </div>
+
+            <button class="complete-btn" onclick="completeLesson(6)">I Got This! Next Lesson ✨</button>
+        </section>
+
+        <!-- LESSON 7: Investment Tracking / Money Operations -->
+        <section class="lesson-card" id="lesson-7">
+            <h2 class="lesson-title"><span class="emoji">💰</span> Money Tracking: Running a Stuffed Animal Business!</h2>
+            
+            <div class="concept-box">
+                <h3>🎯 What is a Transaction Register?</h3>
+                <p>A register is like a <span class="highlight">scoreboard for money</span>. It tracks every time money comes IN (deposits/gains) or goes OUT (payments/losses/fees). You always keep a running BALANCE!</p>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 The Stuffed Animal Shop Analogy</h4>
+                <p>Imagine you run an online shop selling custom stuffed animal outfits:</p>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li><strong>Starting Balance</strong> = How many coins you begin with 🪙</li>
+                    <li><strong>Deposits (+)</strong> = Someone BUYS an outfit (money IN) ✅</li>
+                    <li><strong>Payments (-)</strong> = You BUY fabric supplies (money OUT) ❌</li>
+                    <li><strong>Fees (-)</strong> = The shop takes a small cut (always OUT) 📉</li>
+                    <li><strong>Gains (+)</strong> = Your savings earned interest (free money!) 📈</li>
+                    <li><strong>Losses (-)</strong> = Your savings lost value (boo!) 📉</li>
+                </ul>
+            </div>
+
+            <div class="rules-summary">
+                <h4>📌 The Golden Rules of Money Tracking:</h4>
+                <div class="rule">➕ Money IN (deposits, gains, refunds) = ADD to balance</div>
+                <div class="rule">➖ Money OUT (payments, losses, fees, withdrawals) = SUBTRACT from balance</div>
+                <div class="rule">💵 Always calculate a NEW BALANCE after each transaction!</div>
+                <div class="rule">📊 Running Balance = Previous Balance + Deposits - Payments</div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example: College Investment Fund (From Your Homework!)</h4>
+                <p><strong>Setup:</strong> Justin & Adrienne start with $20,000. Every 6 months they get a statement showing gains or losses, plus a $15 admin fee.</p>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem;">
+                        <tr style="background: var(--pink-main); color: white;">
+                            <th style="padding: 12px; border: 2px solid var(--pink-dark);">Date</th>
+                            <th style="padding: 12px; border: 2px solid var(--pink-dark);">What Happened</th>
+                            <th style="padding: 12px; border: 2px solid var(--pink-dark);">Amount</th>
+                            <th style="padding: 12px; border: 2px solid var(--pink-dark);">Balance</th>
+                        </tr>
+                        <tr style="background: var(--cream);">
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);">Start</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);">Beginning Balance</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);">—</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light); font-weight: bold;">$20,000.00</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);">Jan-Jun 2008</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);">Investment Gain</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light); color: green;">+$700.00</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);">$20,700.00</td>
+                        </tr>
+                        <tr style="background: var(--cream);">
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);"></td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light);">Admin Fee</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light); color: red;">−$15.00</td>
+                            <td style="padding: 10px; border: 1px solid var(--pink-light); font-weight: bold;">$20,685.00</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Start with beginning balance:</strong> $20,000.00
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Add the gain:</strong> $20,000 + $700 = $20,700.00
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Subtract the fee:</strong> $20,700 − $15 = <span class="key-point">$20,685.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Tricky Part: Broker's Fee on Withdrawals!</h4>
+                <p><strong>Rule:</strong> When you take money OUT (withdrawal), there's a 2% broker's fee!</p>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Example:</strong> You withdraw $500
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Calculate 2% fee:</strong>
+                        <div class="math-display">$500 × 0.02 = $10.00 fee</div>
+                        <p style="font-size: 0.9rem;">(Remember: 2% = 2/100 = 0.02)</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Total taken from account:</strong>
+                        <div class="math-display">$500 + $10 = $510 total withdrawn</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h4>💡 Writing Expressions</h4>
+                <p>Your homework asks you to write the math expression, not just the answer!</p>
+                <p><strong>Example:</strong> Starting with $20,000, gain $700, pay $15 fee:</p>
+                <div class="math-display">$20,000.00 + $700.00 − $15.00 = $20,685.00</div>
+                <p>Write it ALL out, then calculate!</p>
+            </div>
+
+            <h3 style="margin-top: 40px; color: var(--purple-dark); font-family: 'Fredoka One', cursive;">🔄 Working BACKWARDS: Finding the Beginning Balance</h3>
+            
+            <div class="concept-box">
+                <h3>🎯 The Detective Method</h3>
+                <p>Sometimes you know the ENDING balance and need to find where you STARTED. It's like being a detective and <span class="highlight">undoing each transaction backwards!</span></p>
+            </div>
+
+            <div class="analogy-box">
+                <h4>🧸 Rewinding Your Stuffed Animal Trades</h4>
+                <p>Imagine you ended the day with 15 stuffed animals. Someone asks "How many did you start with?"</p>
+                <p>You have to UNDO each trade backwards:</p>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li>If you SOLD 3 → <strong>add them back</strong> (undo the selling)</li>
+                    <li>If you BOUGHT 5 → <strong>subtract them</strong> (undo the buying)</li>
+                    <li>If you GOT a gift of 2 → <strong>subtract them</strong> (undo the gift)</li>
+                </ul>
+            </div>
+
+            <div class="rules-summary">
+                <h4>📌 Working Backwards Rules:</h4>
+                <div class="rule">🔄 To UNDO a deposit/gain: SUBTRACT it</div>
+                <div class="rule">🔄 To UNDO a payment/loss: ADD it back</div>
+                <div class="rule">📍 Start from the END and go transaction by transaction!</div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Exit Ticket Example (From Your Homework!):</h4>
+                <p><strong>Given:</strong> Ending balance = $525.55. Find the beginning balance.</p>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem;">
+                        <tr style="background: var(--purple-main); color: white;">
+                            <th style="padding: 10px; border: 2px solid var(--purple-dark);">Date</th>
+                            <th style="padding: 10px; border: 2px solid var(--purple-dark);">Transaction</th>
+                            <th style="padding: 10px; border: 2px solid var(--purple-dark);">Payment (−)</th>
+                            <th style="padding: 10px; border: 2px solid var(--purple-dark);">Deposit (+)</th>
+                        </tr>
+                        <tr style="background: var(--cream);">
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">12/1/10</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">iPod</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">$199.99</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">—</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">12/5/10</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">Gift Certificate</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">$75.00</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">—</td>
+                        </tr>
+                        <tr style="background: var(--cream);">
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">12/7/10</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">Check from Reynolds</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">—</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">$200.00</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">12/15/10</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">Pasta House Dinner</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">$285.00</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">—</td>
+                        </tr>
+                        <tr style="background: var(--cream);">
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">12/20/10</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">Refund - Play House</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">—</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">$150.00</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">12/22/10</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">Tree Nursery</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">$65.48</td>
+                            <td style="padding: 8px; border: 1px solid var(--pink-light);">—</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <p style="font-weight: bold; margin-top: 20px;">Work BACKWARDS from $525.55:</p>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>Undo Tree Nursery (was a payment, so ADD back):</strong>
+                        <div class="math-display">$525.55 + $65.48 = $591.03</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>Undo Refund (was a deposit, so SUBTRACT):</strong>
+                        <div class="math-display">$591.03 − $150.00 = $441.03</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>Undo Dinner (was a payment, so ADD back):</strong>
+                        <div class="math-display">$441.03 + $285.00 = $726.03</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <strong>Undo Check deposit (was a deposit, so SUBTRACT):</strong>
+                        <div class="math-display">$726.03 − $200.00 = $526.03</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <strong>Undo Gift Certificate (was a payment, so ADD back):</strong>
+                        <div class="math-display">$526.03 + $75.00 = $601.03</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <div class="step-content">
+                        <strong>Undo iPod (was a payment, so ADD back):</strong>
+                        <div class="math-display">$601.03 + $199.99 = <span class="key-point">$801.02</span></div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 15px; font-weight: bold; color: var(--success);">✅ Beginning Balance = $801.02</p>
+            </div>
+
+            <div class="practice-section">
+                <h3>🎮 Practice Time!</h3>
+                
+                <div class="question">
+                    <p><strong>Q1:</strong> You start with $500. You gain $75, then pay a $15 fee. What's your balance?</p>
+                    <input type="number" class="answer-input" id="q7-1" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q7-1', 560, '$500 + $75 - $15 = $560')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q7-1"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q2:</strong> What is 2% of $800? (Multiply by 0.02)</p>
+                    <input type="number" class="answer-input" id="q7-2" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q7-2', 16, '$800 × 0.02 = $16')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q7-2"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q3:</strong> You end with $100. The last thing that happened was you PAID $25. What was your balance BEFORE that payment?</p>
+                    <input type="number" class="answer-input" id="q7-3" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q7-3', 125, 'Working backwards: $100 + $25 = $125 (add back the payment)')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q7-3"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>Q4:</strong> You end with $200. The last thing was you RECEIVED a $50 deposit. What was your balance BEFORE that deposit?</p>
+                    <input type="number" class="answer-input" id="q7-4" placeholder="Enter your answer...">
+                    <button class="check-btn" onclick="checkAnswer('q7-4', 150, 'Working backwards: $200 - $50 = $150 (subtract the deposit)')">Check Answer 🎀</button>
+                    <div class="feedback" id="feedback-q7-4"></div>
+                </div>
+            </div>
+
+            <button class="complete-btn" onclick="completeLesson(7)">🎉 Complete All Lessons! 🎉</button>
+        </section>
+
+        <!-- Completion Screen -->
+        <section class="lesson-card" id="completion" style="text-align: center;">
+            <h2 class="lesson-title" style="justify-content: center;"><span class="emoji">🏆</span> Congratulations, Maleah! 🏆</h2>
+            
+            <div style="font-size: 4rem; margin: 30px 0;">
+                🎀🧸✨🌟💖
+            </div>
+            
+            <p style="font-size: 1.3rem; margin: 20px 0;">You've completed all the lessons in the Stuffed Animal Math Academy!</p>
+            
+            <div class="concept-box">
+                <h3>🎯 What You've Learned:</h3>
+                <ul style="text-align: left; margin-left: 20px;">
+                    <li>✅ Number lines and negative numbers</li>
+                    <li>✅ Zero pairs (additive inverses)</li>
+                    <li>✅ Subtracting negatives (double negative rule)</li>
+                    <li>✅ Absolute value and distance</li>
+                    <li>✅ Word problem strategies</li>
+                    <li>✅ Solving algebraic equations</li>
+                    <li>✅ Money tracking & working backwards</li>
+                </ul>
+            </div>
+            
+            <p style="font-size: 1.2rem; margin-top: 30px;">Keep practicing and you'll ace that next test! 💪</p>
+            
+            <button class="complete-btn" onclick="resetProgress()">Start Over 🔄</button>
+        </section>
+    </main>
+
+    <script>
+        // Progress tracking
+        let completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+        let currentLesson = 1;
+
+        // Initialize
+        function init() {
+            updateProgress();
+            updateNavButtons();
+        }
+
+        function showLesson(num) {
+            // Hide all lessons
+            document.querySelectorAll('.lesson-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Show selected lesson
+            const lessonCard = document.getElementById(`lesson-${num}`);
+            if (lessonCard) {
+                lessonCard.classList.add('active');
+            }
+            
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.lesson) === num) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            currentLesson = num;
+        }
+
+        function updateProgress() {
+            const percent = Math.round((completedLessons.length / 7) * 100);
+            document.getElementById('progress-percent').textContent = percent;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            document.getElementById('progress-stars').textContent = '⭐'.repeat(completedLessons.length);
+        }
+
+        function updateNavButtons() {
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const lessonNum = parseInt(btn.dataset.lesson);
+                if (completedLessons.includes(lessonNum)) {
+                    btn.classList.add('completed');
+                }
+            });
+        }
+
+        function checkAnswer(inputId, correctAnswer, explanation) {
+            const input = document.getElementById(inputId);
+            const feedback = document.getElementById('feedback-' + inputId);
+            const userAnswer = parseFloat(input.value);
+            
+            if (isNaN(userAnswer)) {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = '🤔 Please enter a number!';
+                return;
+            }
+            
+            if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '🎉 Correct! ' + explanation;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = '💭 Not quite! ' + explanation;
+            }
+        }
+
+        function resetProgress() {
+            completedLessons = [];
+            localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+            updateProgress();
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('completed');
+            });
+            
+            showLesson(1);
+        }
+
+        function completeLesson(num) {
+            if (!completedLessons.includes(num)) {
+                completedLessons.push(num);
+                localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+            }
+            
+            updateProgress();
+            updateNavButtons();
+            
+            // Go to next lesson or completion
+            if (num < 7) {
+                showLesson(num + 1);
+            } else {
+                // Show completion screen
+                document.querySelectorAll('.lesson-card').forEach(card => {
+                    card.classList.remove('active');
+                });
+                document.getElementById('completion').classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
