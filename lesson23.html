@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 23: Solving Equations Using Algebra | Maleah's Math Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .nav-tab {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            display: none;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #48dbfb;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(72, 219, 251, 0.3);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: #feca57;
+            margin: 25px 0 15px 0;
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            color: #ff6b6b;
+            margin: 20px 0 10px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .analogy-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .analogy-box h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .concept-box {
+            background: rgba(72, 219, 251, 0.1);
+            border: 1px solid rgba(72, 219, 251, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .step-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: #1a1a2e;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .math {
+            font-family: 'Courier New', monospace;
+            background: rgba(0,0,0,0.4);
+            padding: 3px 10px;
+            border-radius: 5px;
+            color: #48dbfb;
+            font-size: 1.1rem;
+        }
+        
+        .math-block {
+            font-family: 'Courier New', monospace;
+            background: rgba(0,0,0,0.4);
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: #48dbfb;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .if-then {
+            background: rgba(254, 202, 87, 0.15);
+            border-left: 4px solid #feca57;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+        
+        .tape-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+        }
+        
+        .tape-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tape-label {
+            width: 80px;
+            text-align: right;
+            padding-right: 10px;
+            color: #a0a0a0;
+        }
+        
+        .tape-segment {
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .tape-total {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .tape-known {
+            background: rgba(72, 219, 251, 0.3);
+            border: 2px solid #48dbfb;
+        }
+        
+        .tape-unknown {
+            background: rgba(255, 107, 107, 0.3);
+            border: 2px dashed #ff6b6b;
+        }
+        
+        /* Quiz Styles */
+        .quiz-question {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .quiz-question h4 {
+            color: #48dbfb;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+        
+        .quiz-input:focus {
+            outline: none;
+            border-color: #48dbfb;
+        }
+        
+        .quiz-btn {
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px 5px 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .quiz-btn.show-answer {
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+        }
+        
+        .feedback {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: rgba(46, 213, 115, 0.2);
+            border: 1px solid #2ed573;
+            color: #2ed573;
+        }
+        
+        .feedback.incorrect {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            color: #ff6b6b;
+        }
+        
+        .solution-reveal {
+            background: rgba(72, 219, 251, 0.1);
+            border: 1px solid rgba(72, 219, 251, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .solution-reveal.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .problem-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tip-box {
+            background: rgba(46, 213, 115, 0.1);
+            border-left: 4px solid #2ed573;
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+        
+        .tip-box strong {
+            color: #2ed573;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #feca57;
+            margin: 20px 0;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .nav-tab { padding: 10px 15px; font-size: 0.9rem; }
+            .section { padding: 20px; }
+            .tape-segment { padding: 10px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Maleah's Math Academy</h1>
+            <p class="subtitle">Lesson 23: Solving Equations Using Algebra</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('concept')">📚 The Concept</button>
+            <button class="nav-tab" onclick="showSection('examples')">✏️ Examples</button>
+            <button class="nav-tab" onclick="showSection('practice')">🎯 Practice Test</button>
+            <button class="nav-tab" onclick="showSection('answers')">📝 Answer Key</button>
+        </div>
+        
+        <!-- CONCEPT SECTION -->
+        <div id="concept" class="section active">
+            <h2>📚 Understanding Equations</h2>
+            
+            <div class="analogy-box">
+                <h4>🎭 The Balance Scale Analogy</h4>
+                <p>Imagine a <strong>balance scale</strong> (like the ones Lady Justice holds). An equation is just like that scale — both sides MUST be equal, or it tips over!</p>
+                <p>When you have <span class="math">2x + 5 = 15</span>, think of it as:</p>
+                <ul>
+                    <li>Left side of scale: 2 mystery boxes + 5 pounds</li>
+                    <li>Right side of scale: 15 pounds</li>
+                </ul>
+                <p><strong>The Golden Rule:</strong> Whatever you do to one side, you MUST do to the other side to keep it balanced!</p>
+            </div>
+            
+            <h3>🔑 Key Vocabulary</h3>
+            
+            <div class="concept-box">
+                <p><strong>Variable:</strong> A letter (like x, p, or m) that represents an unknown number we're trying to find.</p>
+                <p><strong>Equation:</strong> A math statement saying two things are equal (has an = sign).</p>
+                <p><strong>Solve:</strong> Find the value of the variable that makes the equation true.</p>
+                <p><strong>Inverse Operations:</strong> Operations that "undo" each other:</p>
+                <ul>
+                    <li>Addition ↔ Subtraction (opposites)</li>
+                    <li>Multiplication ↔ Division (opposites)</li>
+                </ul>
+            </div>
+            
+            <h3>🎯 The Strategy: Work Backwards!</h3>
+            
+            <div class="analogy-box">
+                <h4>🎁 The Wrapped Present Analogy</h4>
+                <p>Think of the variable (x) as a present that's been wrapped up with operations. To find what's inside, you need to <strong>unwrap it in reverse order</strong>!</p>
+                <p>If someone:</p>
+                <ol>
+                    <li>Put a gift in a box</li>
+                    <li>Wrapped it with paper</li>
+                    <li>Tied a ribbon on it</li>
+                </ol>
+                <p>You'd unwrap it by:</p>
+                <ol>
+                    <li>Untying the ribbon (LAST thing added = FIRST thing removed)</li>
+                    <li>Removing the paper</li>
+                    <li>Opening the box</li>
+                </ol>
+            </div>
+            
+            <h3>📋 The Order of Unwrapping</h3>
+            
+            <div class="step-box">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Simplify each side</strong> (if needed) — combine like terms, distribute
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Undo addition or subtraction FIRST</strong> — move constants away from the variable
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Undo multiplication or division LAST</strong> — isolate the variable completely
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Check your answer!</strong> — plug it back in to verify
+                    </div>
+                </div>
+            </div>
+            
+            <h3>📝 If-Then Statements</h3>
+            
+            <p>Your teacher wants you to JUSTIFY each step. Here's how:</p>
+            
+            <div class="concept-box">
+                <p><strong>If-Then Statement:</strong> Explains WHY a step is valid.</p>
+                <div class="if-then">
+                    <strong>Example:</strong> "If 5 is added to a number and the result is 12, then the number is 12 - 5 = 7"
+                </div>
+                <p>Common justifications:</p>
+                <ul>
+                    <li>"If [something] is added to both sides, the equation remains balanced."</li>
+                    <li>"If both sides are divided by [number], the equation remains balanced."</li>
+                    <li>"If [number] equals [expression], then subtracting [value] from both sides gives..."</li>
+                </ul>
+            </div>
+            
+            <h3>📊 Tape Diagrams</h3>
+            
+            <p>A tape diagram is a visual way to represent a problem using rectangles (like strips of tape).</p>
+            
+            <div class="tape-diagram">
+                <p style="margin-bottom: 15px; color: #feca57;">Example: Trip costs $150, includes $85 hotel + 2 park passes</p>
+                <div class="tape-row">
+                    <div class="tape-label">Total:</div>
+                    <div class="tape-segment tape-total" style="flex: 1;">$150</div>
+                </div>
+                <div class="tape-row">
+                    <div class="tape-label">Parts:</div>
+                    <div class="tape-segment tape-known" style="flex: 0.57;">$85 (hotel)</div>
+                    <div class="tape-segment tape-unknown" style="flex: 0.215;">P</div>
+                    <div class="tape-segment tape-unknown" style="flex: 0.215;">P</div>
+                </div>
+                <p style="margin-top: 15px; color: #a0a0a0;">The parts must add up to the total: $85 + P + P = $150</p>
+            </div>
+        </div>
+        
+        <!-- EXAMPLES SECTION -->
+        <div id="examples" class="section">
+            <h2>✏️ Worked Examples</h2>
+            
+            <h3>Example 1: Youth Group Trip (Problem 1a-c)</h3>
+            
+            <div class="problem-box">
+                <p><strong>Problem:</strong> The youth group is going on a trip to an amusement park. The trip costs each group member $150, which includes $85 for the hotel and TWO one-day combination entrance and meal plan passes.</p>
+                <p><strong>Let P = the cost of one park pass</strong></p>
+            </div>
+            
+            <h4>Part a: Write the Equation</h4>
+            <div class="step-box">
+                <p>What do we know?</p>
+                <ul>
+                    <li>Total cost: $150</li>
+                    <li>Hotel: $85</li>
+                    <li>Park passes: 2 of them, each costs P</li>
+                </ul>
+                <p>The parts must equal the total:</p>
+                <div class="math-block">85 + 2P = 150</div>
+                <p>Or equivalently:</p>
+                <div class="math-block">85 + P + P = 150</div>
+            </div>
+            
+            <h4>Part b: Solve with If-Then Statements</h4>
+            <div class="step-box">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Start: <span class="math">85 + 2P = 150</span></p>
+                        <div class="if-then">If 85 is added to 2P and the result is 150, then 2P alone equals 150 - 85.</div>
+                        <p>Subtract 85 from both sides: <span class="math">2P = 150 - 85</span></p>
+                        <p>Simplify: <span class="math">2P = 65</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Now: <span class="math">2P = 65</span></p>
+                        <div class="if-then">If 2 times P equals 65, then P equals 65 ÷ 2.</div>
+                        <p>Divide both sides by 2: <span class="math">P = 65 ÷ 2</span></p>
+                        <p>Simplify: <span class="math">P = 32.50</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer: Each park pass costs $32.50</strong></p>
+                        <p>Check: $85 + $32.50 + $32.50 = $85 + $65 = $150 ✓</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Part c: Tape Diagram</h4>
+            <div class="tape-diagram">
+                <div class="tape-row">
+                    <div class="tape-label">Total:</div>
+                    <div class="tape-segment tape-total" style="flex: 1;">$150</div>
+                </div>
+                <div class="tape-row">
+                    <div class="tape-label">Parts:</div>
+                    <div class="tape-segment tape-known" style="flex: 0.567;">$85</div>
+                    <div class="tape-segment tape-unknown" style="flex: 0.2165;">$32.50</div>
+                    <div class="tape-segment tape-unknown" style="flex: 0.2165;">$32.50</div>
+                </div>
+            </div>
+            
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+            
+            <h3>Example 2: Ice Cream & Water Bottles (Problem 1d-f)</h3>
+            
+            <div class="problem-box">
+                <p><strong>Problem:</strong> You buy an ice cream bar ($2.89) and 3 bottles of water at the amusement park. You pay with a $10 bill and receive NO change.</p>
+                <p><strong>Let W = the cost of one water bottle</strong></p>
+            </div>
+            
+            <h4>Part d: Write the Equation</h4>
+            <div class="step-box">
+                <p>What do we know?</p>
+                <ul>
+                    <li>Total spent: $10 (no change back)</li>
+                    <li>Ice cream: $2.89</li>
+                    <li>Water bottles: 3 of them, each costs W</li>
+                </ul>
+                <div class="math-block">2.89 + 3W = 10</div>
+            </div>
+            
+            <h4>Part e: Solve with If-Then Statements</h4>
+            <div class="step-box">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Start: <span class="math">2.89 + 3W = 10</span></p>
+                        <div class="if-then">If $2.89 is added to 3W and the total is $10, then 3W equals $10 - $2.89.</div>
+                        <p>Subtract 2.89 from both sides: <span class="math">3W = 10 - 2.89</span></p>
+                        <p>Simplify: <span class="math">3W = 7.11</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Now: <span class="math">3W = 7.11</span></p>
+                        <div class="if-then">If 3 times W equals $7.11, then W equals $7.11 ÷ 3.</div>
+                        <p>Divide both sides by 3: <span class="math">W = 7.11 ÷ 3</span></p>
+                        <p>Simplify: <span class="math">W = 2.37</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer: Each water bottle costs $2.37</strong></p>
+                        <p>Check: $2.89 + (3 × $2.37) = $2.89 + $7.11 = $10.00 ✓</p>
+                    </div>
+                </div>
+            </div>
+            
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+            
+            <h3>Example 3: Solving <span class="math">(2/3)x - 4 = 20</span></h3>
+            
+            <div class="step-box">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Start: <span class="math">(2/3)x - 4 = 20</span></p>
+                        <div class="if-then">If 4 is subtracted from (2/3)x and the result is 20, then (2/3)x equals 20 + 4.</div>
+                        <p>Add 4 to both sides: <span class="math">(2/3)x = 24</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Now: <span class="math">(2/3)x = 24</span></p>
+                        <div class="if-then">If (2/3) of x equals 24, then x equals 24 × (3/2). (Multiply by the reciprocal!)</div>
+                        <p>Multiply both sides by 3/2: <span class="math">x = 24 × (3/2)</span></p>
+                        <p>Simplify: <span class="math">x = 72/2 = 36</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer: x = 36</strong></p>
+                        <p>Check: (2/3)(36) - 4 = 24 - 4 = 20 ✓</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <strong>💡 Pro Tip:</strong> When you have a fraction times x (like 2/3 × x), multiply by the RECIPROCAL (flip the fraction: 3/2) to cancel it out!
+            </div>
+            
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+            
+            <h3>Example 4: Solving <span class="math">12(x + 9) = -108</span></h3>
+            
+            <div class="step-box">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Start: <span class="math">12(x + 9) = -108</span></p>
+                        <div class="if-then">If 12 times (x + 9) equals -108, then (x + 9) equals -108 ÷ 12.</div>
+                        <p>Divide both sides by 12: <span class="math">x + 9 = -108 ÷ 12</span></p>
+                        <p>Simplify: <span class="math">x + 9 = -9</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Now: <span class="math">x + 9 = -9</span></p>
+                        <div class="if-then">If 9 is added to x and the result is -9, then x equals -9 - 9.</div>
+                        <p>Subtract 9 from both sides: <span class="math">x = -9 - 9</span></p>
+                        <p>Simplify: <span class="math">x = -18</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer: x = -18</strong></p>
+                        <p>Check: 12(-18 + 9) = 12(-9) = -108 ✓</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRACTICE TEST SECTION -->
+        <div id="practice" class="section">
+            <h2>🎯 Practice Test</h2>
+            
+            <p>Try to solve each problem, then check your answer!</p>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="score-display">Score: <span id="score">0</span> / 7</div>
+            
+            <!-- Question 1 -->
+            <div class="quiz-question" id="q1">
+                <h4>Problem 1: Solve for x</h4>
+                <div class="math-block">(2/3)x - 4 = 20</div>
+                <input type="text" class="quiz-input" id="answer1" placeholder="Enter your answer for x...">
+                <br>
+                <button class="quiz-btn" onclick="checkAnswer(1, 36)">Check Answer</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(1)">Show Solution</button>
+                <div class="feedback" id="feedback1"></div>
+                <div class="solution-reveal" id="solution1">
+                    <h4>Solution:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p><span class="math">(2/3)x - 4 = 20</span></p>
+                            <p>Add 4 to both sides: <span class="math">(2/3)x = 24</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p>Multiply both sides by 3/2: <span class="math">x = 24 × (3/2) = 36</span></p>
+                        </div>
+                    </div>
+                    <p><strong>Answer: x = 36</strong></p>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="quiz-question" id="q2">
+                <h4>Problem 2: Solve for x</h4>
+                <div class="math-block">4 = (-1 + x) / 2</div>
+                <input type="text" class="quiz-input" id="answer2" placeholder="Enter your answer for x...">
+                <br>
+                <button class="quiz-btn" onclick="checkAnswer(2, 9)">Check Answer</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(2)">Show Solution</button>
+                <div class="feedback" id="feedback2"></div>
+                <div class="solution-reveal" id="solution2">
+                    <h4>Solution:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p><span class="math">4 = (-1 + x) / 2</span></p>
+                            <p>Multiply both sides by 2: <span class="math">8 = -1 + x</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p>Add 1 to both sides: <span class="math">9 = x</span></p>
+                        </div>
+                    </div>
+                    <p><strong>Answer: x = 9</strong></p>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="quiz-question" id="q3">
+                <h4>Problem 3: Solve for x</h4>
+                <div class="math-block">12(x + 9) = -108</div>
+                <input type="text" class="quiz-input" id="answer3" placeholder="Enter your answer for x...">
+                <br>
+                <button class="quiz-btn" onclick="checkAnswer(3, -18)">Check Answer</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(3)">Show Solution</button>
+                <div class="feedback" id="feedback3"></div>
+                <div class="solution-reveal" id="solution3">
+                    <h4>Solution:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p><span class="math">12(x + 9) = -108</span></p>
+                            <p>Divide both sides by 12: <span class="math">x + 9 = -9</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p>Subtract 9 from both sides: <span class="math">x = -18</span></p>
+                        </div>
+                    </div>
+                    <p><strong>Answer: x = -18</strong></p>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="quiz-question" id="q4">
+                <h4>Problem 4: Solve for x</h4>
+                <div class="math-block">5x + 14 = -7</div>
+                <input type="text" class="quiz-input" id="answer4" placeholder="Enter your answer for x...">
+                <br>
+                <button class="quiz-btn" onclick="checkAnswer(4, -4.2, [-4.2, -21/5, '-21/5'])">Check Answer</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(4)">Show Solution</button>
+                <div class="feedback" id="feedback4"></div>
+                <div class="solution-reveal" id="solution4">
+                    <h4>Solution:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p><span class="math">5x + 14 = -7</span></p>
+                            <p>Subtract 14 from both sides: <span class="math">5x = -21</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p>Divide both sides by 5: <span class="math">x = -21/5 = -4.2</span></p>
+                        </div>
+                    </div>
+                    <p><strong>Answer: x = -4.2 or -21/5</strong></p>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="quiz-question" id="q5">
+                <h4>Problem 5: The Pipe Problem</h4>
+                <p>A plumber has a pipe cut into two sections. One section is 12 ft shorter than the other. If 3/4 of the length of the shorter pipe is 120 ft, how long is the <strong>longer</strong> piece of pipe?</p>
+                <input type="text" class="quiz-input" id="answer5" placeholder="Enter the length of the longer pipe (in ft)...">
+                <br>
+                <button class="quiz-btn" onclick="checkAnswer(5, 172)">Check Answer</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(5)">Show Solution</button>
+                <div class="feedback" id="feedback5"></div>
+                <div class="solution-reveal" id="solution5">
+                    <h4>Solution:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p>Let S = shorter pipe length</p>
+                            <p>Given: <span class="math">(3/4)S = 120</span></p>
+                            <p>Multiply by 4/3: <span class="math">S = 120 × (4/3) = 160 ft</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p>Longer pipe = Shorter pipe + 12</p>
+                            <p><span class="math">L = 160 + 12 = 172 ft</span></p>
+                        </div>
+                    </div>
+                    <p><strong>Answer: The longer pipe is 172 ft</strong></p>
+                </div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="quiz-question" id="q6">
+                <h4>Problem 6: Bob's Phone Bill</h4>
+                <p>Bob's monthly phone bill is made up of a $10 fee plus $0.05 per minute. Bob's phone bill for July was $22. How many minutes did Bob use?</p>
+                <input type="text" class="quiz-input" id="answer6" placeholder="Enter the number of minutes...">
+                <br>
+                <button class="quiz-btn" onclick="checkAnswer(6, 240)">Check Answer</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(6)">Show Solution</button>
+                <div class="feedback" id="feedback6"></div>
+                <div class="solution-reveal" id="solution6">
+                    <h4>Solution:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p>Let m = number of minutes</p>
+                            <p>Equation: <span class="math">10 + 0.05m = 22</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p>Subtract 10: <span class="math">0.05m = 12</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <p>Divide by 0.05: <span class="math">m = 12 ÷ 0.05 = 240</span></p>
+                        </div>
+                    </div>
+                    <p><strong>Answer: Bob used 240 minutes</strong></p>
+                </div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="quiz-question" id="q7">
+                <h4>Problem 7: Kym's Phone Plan</h4>
+                <p>Kym switched cell phone plans. Her new plan saves her $3.50 per month compared to her old plan. The new plan costs $294 for the entire year. How much did Kym pay per month under her OLD plan?</p>
+                <input type="text" class="quiz-input" id="answer7" placeholder="Enter the old monthly cost ($)...">
+                <br>
+                <button class="quiz-btn" onclick="checkAnswer(7, 28)">Check Answer</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(7)">Show Solution</button>
+                <div class="feedback" id="feedback7"></div>
+                <div class="solution-reveal" id="solution7">
+                    <h4>Solution:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <p>New plan yearly cost: $294</p>
+                            <p>New plan monthly cost: <span class="math">$294 ÷ 12 = $24.50</span></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <p>New plan saves $3.50/month compared to old plan</p>
+                            <p>So old plan was MORE expensive by $3.50</p>
+                            <p><span class="math">Old = New + $3.50 = $24.50 + $3.50 = $28.00</span></p>
+                        </div>
+                    </div>
+                    <p><strong>Answer: Kym paid $28.00 per month on her old plan</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ANSWER KEY SECTION -->
+        <div id="answers" class="section">
+            <h2>📝 Complete Answer Key</h2>
+            
+            <h3>Problem Set Answers</h3>
+            
+            <div class="step-box">
+                <h4>1. <span class="math">(2/3)x - 4 = 20</span></h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p>Add 4: <span class="math">(2/3)x = 24</span></p>
+                        <p>Multiply by 3/2: <span class="math">x = 36</span></p>
+                        <div class="if-then">If 4 is subtracted from (2/3)x and equals 20, then (2/3)x = 24. If (2/3)x = 24, then x = 24 × (3/2) = 36.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>2. <span class="math">4 = (-1 + x) / 2</span></h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p>Multiply by 2: <span class="math">8 = -1 + x</span></p>
+                        <p>Add 1: <span class="math">x = 9</span></p>
+                        <div class="if-then">If (-1 + x) divided by 2 equals 4, then -1 + x = 8. If -1 + x = 8, then x = 9.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>3. <span class="math">12(x + 9) = -108</span></h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p>Divide by 12: <span class="math">x + 9 = -9</span></p>
+                        <p>Subtract 9: <span class="math">x = -18</span></p>
+                        <div class="if-then">If 12 times (x + 9) equals -108, then (x + 9) = -9. If x + 9 = -9, then x = -18.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>4. <span class="math">5x + 14 = -7</span></h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p>Subtract 14: <span class="math">5x = -21</span></p>
+                        <p>Divide by 5: <span class="math">x = -21/5 = -4.2</span></p>
+                        <div class="if-then">If 14 is added to 5x and equals -7, then 5x = -21. If 5x = -21, then x = -4.2.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Word Problems</h3>
+            
+            <div class="step-box">
+                <h4>5. Plumber's Pipe</h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p><strong>Equation:</strong> <span class="math">(3/4)S = 120</span> where S = shorter pipe</p>
+                        <p><strong>Solve:</strong> S = 120 × (4/3) = <strong>160 ft</strong> (shorter pipe)</p>
+                        <p><strong>Longer pipe:</strong> 160 + 12 = <strong>172 ft</strong></p>
+                        <div class="if-then">If 3/4 of the shorter pipe is 120 ft, then the shorter pipe is 160 ft. The longer pipe is 12 ft more, so it is 172 ft.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>6. Bob's Phone Bill</h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p><strong>Equation:</strong> <span class="math">10 + 0.05m = 22</span></p>
+                        <p><strong>Solve:</strong> 0.05m = 12 → m = <strong>240 minutes</strong></p>
+                        <div class="if-then">If the $10 fee plus $0.05 per minute equals $22, then the minute charges are $12. If $0.05 times m = $12, then m = 240 minutes.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>7. Kym's Phone Plan</h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p><strong>New monthly cost:</strong> $294 ÷ 12 = $24.50</p>
+                        <p><strong>Equation:</strong> Old plan = New plan + $3.50 savings</p>
+                        <p><strong>Solve:</strong> Old = $24.50 + $3.50 = <strong>$28.00 per month</strong></p>
+                        <div class="if-then">If the new plan saves $3.50/month and costs $24.50/month, then the old plan was $24.50 + $3.50 = $28.00/month.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Youth Group Trip (From Classwork)</h3>
+            
+            <div class="step-box">
+                <h4>1a-c. Park Pass Cost</h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p><strong>Equation:</strong> <span class="math">85 + 2P = 150</span></p>
+                        <p><strong>Solve:</strong> 2P = 65 → P = <strong>$32.50 per park pass</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>1d-f. Water Bottle Cost</h4>
+                <div class="step">
+                    <div class="step-number">→</div>
+                    <div class="step-content">
+                        <p><strong>Equation:</strong> <span class="math">2.89 + 3W = 10</span></p>
+                        <p><strong>Solve:</strong> 3W = 7.11 → W = <strong>$2.37 per water bottle</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <strong>🎉 Great job studying!</strong> Remember: equations are like puzzles. Take your time, work step-by-step, and always check your answer by plugging it back in!
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let score = 0;
+        let answered = new Set();
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function checkAnswer(questionNum, correctAnswer, alternatives = []) {
+            const input = document.getElementById('answer' + questionNum);
+            const feedback = document.getElementById('feedback' + questionNum);
+            const userAnswer = parseFloat(input.value.replace(/[^0-9.-]/g, ''));
+            
+            let isCorrect = Math.abs(userAnswer - correctAnswer) < 0.01;
+            
+            // Check alternatives
+            if (!isCorrect && alternatives.length > 0) {
+                for (let alt of alternatives) {
+                    if (typeof alt === 'number' && Math.abs(userAnswer - alt) < 0.01) {
+                        isCorrect = true;
+                        break;
+                    }
+                }
+            }
+            
+            feedback.style.display = 'block';
+            
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '🎉 Correct! Great job!';
+                if (!answered.has(questionNum)) {
+                    answered.add(questionNum);
+                    score++;
+                    updateScore();
+                }
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = '❌ Not quite. Try again or click "Show Solution" to see the steps!';
+            }
+        }
+        
+        function showSolution(questionNum) {
+            const solution = document.getElementById('solution' + questionNum);
+            solution.classList.add('show');
+        }
+        
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('progressFill').style.width = (score / 7 * 100) + '%';
+        }
+    </script>
+</body>
+</html>
