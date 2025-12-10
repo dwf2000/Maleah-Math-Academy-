@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Distributive Property | Maleah's Math Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); min-height: 100vh; color: #e8e8e8; line-height: 1.7; }
+        .container { max-width: 950px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.05); border-radius: 20px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        h1 { font-size: 2.5rem; background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
+        .subtitle { font-size: 1.3rem; color: #a0a0a0; }
+        .nav-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; justify-content: center; }
+        .nav-tab { padding: 12px 24px; background: rgba(255,255,255,0.1); border: none; border-radius: 30px; color: #fff; cursor: pointer; font-size: 1rem; transition: all 0.3s ease; }
+        .nav-tab:hover, .nav-tab.active { background: linear-gradient(90deg, #667eea, #764ba2); transform: translateY(-2px); }
+        .section { display: none; background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { font-size: 1.8rem; color: #48dbfb; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(72, 219, 251, 0.3); }
+        h3 { font-size: 1.4rem; color: #feca57; margin: 25px 0 15px 0; }
+        h4 { font-size: 1.2rem; color: #ff6b6b; margin: 20px 0 10px 0; }
+        p { margin-bottom: 15px; font-size: 1.1rem; }
+        .analogy-box { background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2)); border-left: 4px solid #667eea; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .analogy-box h4 { color: #667eea; margin-top: 0; }
+        .concept-box { background: rgba(72, 219, 251, 0.1); border: 1px solid rgba(72, 219, 251, 0.3); padding: 20px; border-radius: 15px; margin: 20px 0; }
+        .step-box { background: rgba(0,0,0,0.3); border-radius: 15px; padding: 20px; margin: 15px 0; }
+        .step { display: flex; align-items: flex-start; margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; }
+        .step-number { background: linear-gradient(135deg, #ff6b6b, #feca57); color: #1a1a2e; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0; }
+        .step-content { flex: 1; }
+        .math { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.4); padding: 3px 10px; border-radius: 5px; color: #48dbfb; font-size: 1.1rem; }
+        .math-block { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.4); padding: 15px 20px; border-radius: 10px; color: #48dbfb; font-size: 1.2rem; margin: 15px 0; text-align: center; }
+        .arrow { color: #feca57; font-size: 1.3rem; margin: 0 10px; }
+        .two-way { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+        .two-way-box { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; text-align: center; min-width: 200px; }
+        .two-way-box.product { border: 2px solid #ff6b6b; }
+        .two-way-box.sum { border: 2px solid #48dbfb; }
+        .two-way-label { font-weight: bold; margin-bottom: 10px; }
+        .two-way-box.product .two-way-label { color: #ff6b6b; }
+        .two-way-box.sum .two-way-label { color: #48dbfb; }
+        .visual-array { display: flex; margin: 20px auto; justify-content: center; }
+        .array-cell { border: 2px solid #48dbfb; padding: 15px 25px; text-align: center; font-size: 1.1rem; background: rgba(72, 219, 251, 0.1); }
+        .array-width { position: relative; }
+        .array-height { writing-mode: vertical-rl; text-orientation: mixed; padding: 10px; color: #feca57; }
+        .quiz-question { background: rgba(0,0,0,0.3); border-radius: 15px; padding: 25px; margin: 20px 0; }
+        .quiz-question h4 { color: #48dbfb; margin-bottom: 15px; }
+        .quiz-input { width: 100%; padding: 15px; border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(0,0,0,0.3); color: #fff; font-size: 1.1rem; margin: 10px 0; }
+        .quiz-input:focus { outline: none; border-color: #48dbfb; }
+        .quiz-btn { padding: 12px 30px; background: linear-gradient(90deg, #667eea, #764ba2); border: none; border-radius: 25px; color: #fff; font-size: 1rem; cursor: pointer; margin: 10px 5px 10px 0; transition: all 0.3s ease; }
+        .quiz-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .quiz-btn.show-answer { background: linear-gradient(90deg, #ff6b6b, #feca57); }
+        .feedback { padding: 15px; border-radius: 10px; margin-top: 15px; display: none; }
+        .feedback.correct { background: rgba(46, 213, 115, 0.2); border: 1px solid #2ed573; color: #2ed573; }
+        .feedback.incorrect { background: rgba(255, 107, 107, 0.2); border: 1px solid #ff6b6b; color: #ff6b6b; }
+        .solution-reveal { background: rgba(72, 219, 251, 0.1); border: 1px solid rgba(72, 219, 251, 0.3); border-radius: 15px; padding: 20px; margin-top: 15px; display: none; }
+        .solution-reveal.show { display: block; animation: fadeIn 0.5s ease; }
+        .tip-box { background: rgba(46, 213, 115, 0.1); border-left: 4px solid #2ed573; padding: 15px 20px; border-radius: 0 10px 10px 0; margin: 15px 0; }
+        .tip-box strong { color: #2ed573; }
+        .warning-box { background: rgba(255, 107, 107, 0.1); border-left: 4px solid #ff6b6b; padding: 15px 20px; border-radius: 0 10px 10px 0; margin: 15px 0; }
+        .warning-box strong { color: #ff6b6b; }
+        .progress-bar { width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; margin: 20px 0; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 5px; transition: width 0.5s ease; }
+        .score-display { text-align: center; font-size: 1.5rem; color: #feca57; margin: 20px 0; }
+        ul, ol { margin: 15px 0 15px 25px; }
+        li { margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid rgba(255,255,255,0.2); padding: 12px; text-align: center; }
+        th { background: rgba(102, 126, 234, 0.3); color: #feca57; }
+        .gcf-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gcf-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; text-align: center; }
+        .gcf-card .number { font-size: 1.5rem; color: #48dbfb; margin-bottom: 10px; }
+        .gcf-card .factors { color: #a0a0a0; font-size: 0.95rem; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .nav-tab { padding: 10px 15px; font-size: 0.9rem; } .section { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Maleah's Math Academy</h1>
+            <p class="subtitle">Lesson 4: Writing Products as Sums and Sums as Products</p>
+            <p style="color: #667eea; margin-top: 10px;">The Distributive Property & Factoring</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('concept')">📚 The Concept</button>
+            <button class="nav-tab" onclick="showSection('examples')">✏️ Examples</button>
+            <button class="nav-tab" onclick="showSection('practice')">🎯 Practice Test</button>
+            <button class="nav-tab" onclick="showSection('answers')">📝 Answer Key</button>
+        </div>
+        
+        <!-- CONCEPT SECTION -->
+        <div id="concept" class="section active">
+            <h2>📚 Understanding the Distributive Property</h2>
+            
+            <div class="analogy-box">
+                <h4>🍕 The Pizza Party Analogy</h4>
+                <p>Imagine you're ordering pizza for 3 friends. Each friend wants <strong>2 slices of pepperoni + 1 slice of cheese</strong>.</p>
+                <p>You could count it two ways:</p>
+                <ul>
+                    <li><strong>Product form:</strong> 3 × (2 pepperoni + 1 cheese) = 3 friends each getting their combo</li>
+                    <li><strong>Sum form:</strong> 6 pepperoni + 3 cheese = counting all slices separately</li>
+                </ul>
+                <p>Both describe the SAME amount of pizza! That's the distributive property!</p>
+            </div>
+            
+            <h3>🔄 Two Directions: Forward & Backward</h3>
+            
+            <div class="two-way">
+                <div class="two-way-box product">
+                    <div class="two-way-label">PRODUCT</div>
+                    <div class="math">3(x + 4)</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Factored form</p>
+                </div>
+                <div style="font-size: 2rem; color: #feca57;">⟷</div>
+                <div class="two-way-box sum">
+                    <div class="two-way-label">SUM</div>
+                    <div class="math">3x + 12</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Expanded form</p>
+                </div>
+            </div>
+            
+            <div class="concept-box">
+                <h4 style="color: #48dbfb; margin-top: 0;">The Distributive Property Formula</h4>
+                <div class="math-block">a(b + c) = ab + ac</div>
+                <p><strong>Forward (Expanding):</strong> Multiply the outside number by EACH term inside the parentheses</p>
+                <p><strong>Backward (Factoring):</strong> Find what's COMMON to all terms and pull it out</p>
+            </div>
+            
+            <h3>📦 The Box/Area Model</h3>
+            
+            <div class="analogy-box">
+                <h4>🏠 The Room Analogy</h4>
+                <p>Think of a rectangle divided into sections. The <strong>total area</strong> equals the <strong>sum of the smaller areas</strong>.</p>
+                <p>If a room is 2 units wide and has sections of length x, 6y, and 4:</p>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <p style="color: #feca57; margin-bottom: 5px;">Width = 2</p>
+                <div class="visual-array">
+                    <div class="array-cell">2x</div>
+                    <div class="array-cell">12y</div>
+                    <div class="array-cell">8</div>
+                </div>
+                <p style="color: #a0a0a0; margin-top: 10px;">Lengths: x, 6y, 4</p>
+            </div>
+            
+            <p style="text-align: center;"><span class="math">Total Area = 2x + 12y + 8 = 2(x + 6y + 4)</span></p>
+            
+            <h3>🔍 Finding the GCF (Greatest Common Factor)</h3>
+            
+            <div class="concept-box">
+                <p><strong>To factor an expression:</strong></p>
+                <ol>
+                    <li>Find the <strong>GCF</strong> of all the numbers (coefficients)</li>
+                    <li>Find any <strong>common variables</strong></li>
+                    <li>Divide each term by the GCF</li>
+                    <li>Write as: <span class="math">GCF(what's left)</span></li>
+                </ol>
+            </div>
+            
+            <div class="step-box">
+                <h4 style="color: #feca57;">Example: Factor 48j + 60k + 24</h4>
+                <div class="gcf-steps">
+                    <div class="gcf-card">
+                        <div class="number">48</div>
+                        <div class="factors">= 12 × 4</div>
+                    </div>
+                    <div class="gcf-card">
+                        <div class="number">60</div>
+                        <div class="factors">= 12 × 5</div>
+                    </div>
+                    <div class="gcf-card">
+                        <div class="number">24</div>
+                        <div class="factors">= 12 × 2</div>
+                    </div>
+                </div>
+                <p style="text-align: center;"><strong>GCF = 12</strong></p>
+                <div class="math-block">48j + 60k + 24 = 12(4j + 5k + 2)</div>
+            </div>
+            
+            <h3>⚠️ Negatives & Opposites</h3>
+            
+            <div class="warning-box">
+                <strong>Important Rule:</strong> The opposite of an expression means multiply by −1
+                <p>Opposite of <span class="math">(−6v + 1)</span> is <span class="math">−(−6v + 1) = 6v − 1</span></p>
+            </div>
+            
+            <div class="concept-box">
+                <p><strong>Distributing a negative:</strong></p>
+                <div class="math-block">−(a + b) = −a − b</div>
+                <div class="math-block">−(a − b) = −a + b</div>
+                <p>The negative FLIPS the sign of every term inside!</p>
+            </div>
+            
+            <div class="tip-box">
+                <strong>💡 Memory Trick:</strong> "Distribute means DELIVER" — deliver the outside number to EVERY term inside, like a mail carrier delivering to every house on the street!
+            </div>
+        </div>
+        
+        <!-- EXAMPLES SECTION -->
+        <div id="examples" class="section">
+            <h2>✏️ Worked Examples</h2>
+            
+            <h3>Example 1: Expanding (Product → Sum)</h3>
+            
+            <div class="step-box">
+                <h4>Expand: 2(x + 5)</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Multiply 2 by the first term: <span class="math">2 × x = 2x</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Multiply 2 by the second term: <span class="math">2 × 5 = 10</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer:</strong> <span class="math">2(x + 5) = 2x + 10</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>Expand: 7(x − 3)</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Multiply 7 by x: <span class="math">7 × x = 7x</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Multiply 7 by −3: <span class="math">7 × (−3) = −21</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer:</strong> <span class="math">7(x − 3) = 7x − 21</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Example 2: Factoring (Sum → Product)</h3>
+            
+            <div class="step-box">
+                <h4>Factor: 72t + 8</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Find GCF of 72 and 8: <span class="math">GCF = 8</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Divide each term by 8:</p>
+                        <p><span class="math">72t ÷ 8 = 9t</span></p>
+                        <p><span class="math">8 ÷ 8 = 1</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer:</strong> <span class="math">72t + 8 = 8(9t + 1)</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>Factor: 36z + 72</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Find GCF of 36 and 72: <span class="math">GCF = 36</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Divide each term:</p>
+                        <p><span class="math">36z ÷ 36 = z</span> and <span class="math">72 ÷ 36 = 2</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer:</strong> <span class="math">36z + 72 = 36(z + 2)</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Example 3: Repeated Addition → Product</h3>
+            
+            <div class="step-box">
+                <h4>Write as product: (x + 5) + (x + 5) + (x + 5)</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Count how many times (x + 5) appears: <strong>3 times</strong></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer:</strong> <span class="math">3(x + 5)</span></p>
+                        <p>Check by expanding: 3x + 15</p>
+                        <p>Original sum: x+5 + x+5 + x+5 = 3x + 15 ✓</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Example 4: Distributing Negatives</h3>
+            
+            <div class="step-box">
+                <h4>Expand: −3(2p − 3q)</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Multiply −3 by 2p: <span class="math">(−3)(2p) = −6p</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Multiply −3 by −3q: <span class="math">(−3)(−3q) = +9q</span></p>
+                        <p style="color: #feca57;">(Negative × Negative = Positive!)</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer:</strong> <span class="math">−3(2p − 3q) = −6p + 9q</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <h4>Simplify: −a − (a − b)</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p>Distribute the negative to the parentheses:</p>
+                        <p><span class="math">−(a − b) = −a + b</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p>Combine with the first −a:</p>
+                        <p><span class="math">−a + (−a + b) = −a − a + b = −2a + b</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <div class="step-content">
+                        <p><strong>Answer:</strong> <span class="math">−a − (a − b) = −2a + b</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Example 5: Word Problem</h3>
+            
+            <div class="step-box">
+                <h4>Mini Golf Problem</h4>
+                <p>6 friends each buy a package: 2 rounds of golf (g each) + 20 tokens (t each) − $3 off.</p>
+                <p><strong>Expression 1 (Total for group):</strong></p>
+                <div class="math-block">6(2g + 20t − 3)</div>
+                <p><strong>Expression 2 (Expanded):</strong></p>
+                <div class="math-block">12g + 120t − 18</div>
+                <p style="color: #a0a0a0;">Both represent the same total cost!</p>
+            </div>
+        </div>
+        
+        <!-- PRACTICE TEST SECTION -->
+        <div id="practice" class="section">
+            <h2>🎯 Practice Test</h2>
+            
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+            <div class="score-display">Score: <span id="score">0</span> / 12</div>
+            
+            <h3>Part A: Expand (Product → Sum)</h3>
+            
+            <div class="quiz-question">
+                <h4>1. Expand: 2(x + 5)</h4>
+                <input type="text" class="quiz-input" id="answer1" placeholder="Enter expanded form (e.g., 2x + 10)">
+                <button class="quiz-btn" onclick="checkExpand(1, '2x+10')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(1)">Show Solution</button>
+                <div class="feedback" id="feedback1"></div>
+                <div class="solution-reveal" id="solution1"><p>2 × x = 2x, 2 × 5 = 10 → <strong>2x + 10</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>2. Expand: 3(x + 4)</h4>
+                <input type="text" class="quiz-input" id="answer2" placeholder="Enter expanded form">
+                <button class="quiz-btn" onclick="checkExpand(2, '3x+12')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(2)">Show Solution</button>
+                <div class="feedback" id="feedback2"></div>
+                <div class="solution-reveal" id="solution2"><p>3 × x = 3x, 3 × 4 = 12 → <strong>3x + 12</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>3. Expand: 7(x − 3)</h4>
+                <input type="text" class="quiz-input" id="answer3" placeholder="Enter expanded form">
+                <button class="quiz-btn" onclick="checkExpand(3, '7x-21')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(3)">Show Solution</button>
+                <div class="feedback" id="feedback3"></div>
+                <div class="solution-reveal" id="solution3"><p>7 × x = 7x, 7 × (−3) = −21 → <strong>7x − 21</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>4. Expand: 5(3x + 4)</h4>
+                <input type="text" class="quiz-input" id="answer4" placeholder="Enter expanded form">
+                <button class="quiz-btn" onclick="checkExpand(4, '15x+20')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(4)">Show Solution</button>
+                <div class="feedback" id="feedback4"></div>
+                <div class="solution-reveal" id="solution4"><p>5 × 3x = 15x, 5 × 4 = 20 → <strong>15x + 20</strong></p></div>
+            </div>
+            
+            <h3>Part B: Factor (Sum → Product)</h3>
+            
+            <div class="quiz-question">
+                <h4>5. Factor: 72t + 8</h4>
+                <input type="text" class="quiz-input" id="answer5" placeholder="Enter factored form (e.g., 8(9t + 1))">
+                <button class="quiz-btn" onclick="checkFactor(5, '8(9t+1)')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(5)">Show Solution</button>
+                <div class="feedback" id="feedback5"></div>
+                <div class="solution-reveal" id="solution5"><p>GCF = 8. 72t ÷ 8 = 9t, 8 ÷ 8 = 1 → <strong>8(9t + 1)</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>6. Factor: 36z + 72</h4>
+                <input type="text" class="quiz-input" id="answer6" placeholder="Enter factored form">
+                <button class="quiz-btn" onclick="checkFactor(6, '36(z+2)')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(6)">Show Solution</button>
+                <div class="feedback" id="feedback6"></div>
+                <div class="solution-reveal" id="solution6"><p>GCF = 36. 36z ÷ 36 = z, 72 ÷ 36 = 2 → <strong>36(z + 2)</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>7. Factor: 55a + 11</h4>
+                <input type="text" class="quiz-input" id="answer7" placeholder="Enter factored form">
+                <button class="quiz-btn" onclick="checkFactor(7, '11(5a+1)')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(7)">Show Solution</button>
+                <div class="feedback" id="feedback7"></div>
+                <div class="solution-reveal" id="solution7"><p>GCF = 11. 55a ÷ 11 = 5a, 11 ÷ 11 = 1 → <strong>11(5a + 1)</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>8. Factor: 48j + 60k + 24</h4>
+                <input type="text" class="quiz-input" id="answer8" placeholder="Enter factored form">
+                <button class="quiz-btn" onclick="checkFactor(8, '12(4j+5k+2)')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(8)">Show Solution</button>
+                <div class="feedback" id="feedback8"></div>
+                <div class="solution-reveal" id="solution8"><p>GCF = 12. 48÷12=4, 60÷12=5, 24÷12=2 → <strong>12(4j + 5k + 2)</strong></p></div>
+            </div>
+            
+            <h3>Part C: Repeated Addition → Product</h3>
+            
+            <div class="quiz-question">
+                <h4>9. Write as product: (2 + 5) + (2 + 5) + (2 + 5)</h4>
+                <input type="text" class="quiz-input" id="answer9" placeholder="Enter product form">
+                <button class="quiz-btn" onclick="checkFactor(9, '3(2+5)')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(9)">Show Solution</button>
+                <div class="feedback" id="feedback9"></div>
+                <div class="solution-reveal" id="solution9"><p>(2+5) appears 3 times → <strong>3(2 + 5)</strong> or just <strong>3(7) = 21</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>10. Write as product: (x + y) + (x + y) + (x + y)</h4>
+                <input type="text" class="quiz-input" id="answer10" placeholder="Enter product form">
+                <button class="quiz-btn" onclick="checkFactor(10, '3(x+y)')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(10)">Show Solution</button>
+                <div class="feedback" id="feedback10"></div>
+                <div class="solution-reveal" id="solution10"><p>(x+y) appears 3 times → <strong>3(x + y)</strong></p></div>
+            </div>
+            
+            <h3>Part D: Negatives</h3>
+            
+            <div class="quiz-question">
+                <h4>11. Expand: −3(2p − 3q)</h4>
+                <input type="text" class="quiz-input" id="answer11" placeholder="Enter expanded form">
+                <button class="quiz-btn" onclick="checkExpand(11, '-6p+9q')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(11)">Show Solution</button>
+                <div class="feedback" id="feedback11"></div>
+                <div class="solution-reveal" id="solution11"><p>−3 × 2p = −6p, −3 × (−3q) = +9q → <strong>−6p + 9q</strong></p></div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>12. What is the opposite of (−6v + 1)?</h4>
+                <input type="text" class="quiz-input" id="answer12" placeholder="Enter the opposite">
+                <button class="quiz-btn" onclick="checkExpand(12, '6v-1')">Check</button>
+                <button class="quiz-btn show-answer" onclick="showSolution(12)">Show Solution</button>
+                <div class="feedback" id="feedback12"></div>
+                <div class="solution-reveal" id="solution12"><p>Opposite means multiply by −1: −(−6v + 1) = <strong>6v − 1</strong></p></div>
+            </div>
+        </div>
+        
+        <!-- ANSWER KEY SECTION -->
+        <div id="answers" class="section">
+            <h2>📝 Complete Answer Key</h2>
+            
+            <h3>Example 1 Table (Expanding)</h3>
+            <table>
+                <tr><th>Product</th><th>Sum</th></tr>
+                <tr><td>2(x + 5)</td><td><strong>2x + 10</strong></td></tr>
+                <tr><td>3(x + 4)</td><td><strong>3x + 12</strong></td></tr>
+                <tr><td>6(x + 1)</td><td><strong>6x + 6</strong></td></tr>
+                <tr><td>7(x − 3)</td><td><strong>7x − 21</strong></td></tr>
+                <tr><td>5(x + 6)</td><td>5x + 30 (given)</td></tr>
+                <tr><td>8(x + 1)</td><td>8x + 8 (given)</td></tr>
+                <tr><td>3(x − 4)</td><td>3x − 12 (given)</td></tr>
+                <tr><td>5(3x + 4)</td><td>15x + 20 (given)</td></tr>
+            </table>
+            
+            <h3>Exercise 1 (Factoring)</h3>
+            <div class="step-box">
+                <p><strong>a. 72t + 8 = 8(9t + 1)</strong> — GCF is 8</p>
+                <p><strong>b. 55a + 11 = 11(5a + 1)</strong> — GCF is 11</p>
+                <p><strong>c. 36z + 72 = 36(z + 2)</strong> — GCF is 36</p>
+                <p><strong>d. 144q − 15 = 3(48q − 5)</strong> — GCF is 3</p>
+                <p><strong>e. 3r + 3s = 3(r + s)</strong> — GCF is 3</p>
+            </div>
+            
+            <h3>Example 2 (Rectangular Array)</h3>
+            <div class="step-box">
+                <p>Array with cells 2x, 12y, 8 (all sharing width 2)</p>
+                <p>Lengths: <strong>x, 6y, 4</strong></p>
+                <p>Sum: 2x + 12y + 8</p>
+                <p>Product: <strong>2(x + 6y + 4)</strong></p>
+            </div>
+            
+            <h3>Exercise 2</h3>
+            <div class="step-box">
+                <p><strong>a. Array (24d, 8e, 6):</strong></p>
+                <p>Sum: 24d + 8e + 6</p>
+                <p>Product: <strong>2(12d + 4e + 3)</strong></p>
+                <p><strong>b. 48j + 60k + 24 = 12(4j + 5k + 2)</strong></p>
+            </div>
+            
+            <h3>Exercise 3 (Writing Sums as Products)</h3>
+            <div class="step-box">
+                <p><strong>a. 2·3 + 5·3 = 3(2 + 5) = 3(7) = 21</strong></p>
+                <p><strong>b. (2+5) + (2+5) + (2+5) = 3(2 + 5) = 21</strong></p>
+                <p><strong>c. 2·2 + (5+2) + (5·2) = 4 + 7 + 10 = 21 = 3(7)</strong></p>
+                <p><strong>d. x·3 + 5·3 = 3(x + 5) = 3x + 15</strong></p>
+                <p><strong>e. (x+5) + (x+5) + (x+5) = 3(x + 5) = 3x + 15</strong></p>
+                <p><strong>f. 2x + (5+x) + 5·2 = 3x + 15 = 3(x + 5)</strong></p>
+                <p><strong>g. x·3 + y·3 = 3(x + y) = 3x + 3y</strong></p>
+                <p><strong>h. (x+y) + (x+y) + (x+y) = 3(x + y) = 3x + 3y</strong></p>
+                <p><strong>i. 2x + (y+x) + 2y = 3x + 3y = 3(x + y)</strong></p>
+            </div>
+            
+            <h3>Example 3 (Word Problem)</h3>
+            <div class="step-box">
+                <p>g = cost of golf, t = cost of token</p>
+                <p>Package = 2g + 20t − 3</p>
+                <p>6 friends buying packages:</p>
+                <p><strong>Expression 1:</strong> 6(2g + 20t − 3)</p>
+                <p><strong>Expression 2:</strong> 12g + 120t − 18</p>
+            </div>
+            
+            <h3>Exercise 4 (Opposites)</h3>
+            <div class="step-box">
+                <p><strong>a. Opposite of (−6v + 1) = 6v − 1</strong></p>
+                <p><strong>b. Using distributive property: −1(−6v + 1) = 6v − 1</strong></p>
+            </div>
+            
+            <h3>Example 5</h3>
+            <div class="step-box">
+                <p><strong>5a − (a − 3b)</strong></p>
+                <p>= 5a + (−1)(a − 3b)</p>
+                <p>= 5a + (−a + 3b)</p>
+                <p>= 5a − a + 3b</p>
+                <p><strong>= 4a + 3b</strong></p>
+            </div>
+            
+            <h3>Exercise 5 (Expand & Collect)</h3>
+            <div class="step-box">
+                <p><strong>a. −3(2p − 3q) = −6p + 9q</strong></p>
+                <p><strong>b. −a − (a − b) = −a − a + b = −2a + b</strong></p>
+            </div>
+            
+            <div class="tip-box">
+                <strong>🎉 Key Takeaways:</strong>
+                <ul>
+                    <li>Distributive Property: a(b + c) = ab + ac</li>
+                    <li>Factoring is the REVERSE of distributing</li>
+                    <li>Find the GCF first when factoring</li>
+                    <li>Negative signs flip ALL terms inside parentheses</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let score = 0;
+        let answered = new Set();
+        const totalQuestions = 12;
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function normalize(str) {
+            return str.toLowerCase().replace(/\s+/g, '').replace(/\*/g, '');
+        }
+        
+        function checkExpand(q, correct) {
+            const input = document.getElementById('answer' + q);
+            const feedback = document.getElementById('feedback' + q);
+            const userAnswer = normalize(input.value);
+            const correctNorm = normalize(correct);
+            
+            // Handle equivalent forms
+            const equivalents = {
+                '2x+10': ['2x+10', '10+2x'],
+                '3x+12': ['3x+12', '12+3x'],
+                '7x-21': ['7x-21'],
+                '15x+20': ['15x+20', '20+15x'],
+                '-6p+9q': ['-6p+9q', '9q-6p', '9q+-6p'],
+                '6v-1': ['6v-1', '-1+6v']
+            };
+            
+            let isCorrect = userAnswer === correctNorm;
+            if (equivalents[correct]) {
+                isCorrect = equivalents[correct].some(eq => normalize(eq) === userAnswer);
+            }
+            
+            showFeedback(q, isCorrect, feedback);
+        }
+        
+        function checkFactor(q, correct) {
+            const input = document.getElementById('answer' + q);
+            const feedback = document.getElementById('feedback' + q);
+            const userAnswer = normalize(input.value);
+            const correctNorm = normalize(correct);
+            
+            // Handle spaces and minor variations
+            let isCorrect = userAnswer === correctNorm || 
+                           userAnswer === correctNorm.replace(/\+/g, ' + ').replace(/\s+/g, '');
+            
+            showFeedback(q, isCorrect, feedback);
+        }
+        
+        function showFeedback(q, isCorrect, feedback) {
+            feedback.style.display = 'block';
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '🎉 Correct!';
+                if (!answered.has(q)) {
+                    answered.add(q);
+                    score++;
+                    updateScore();
+                }
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = '❌ Not quite. Check your work or click Show Solution.';
+            }
+        }
+        
+        function showSolution(q) {
+            document.getElementById('solution' + q).classList.add('show');
+        }
+        
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('progressFill').style.width = (score / totalQuestions * 100) + '%';
+        }
+    </script>
+</body>
+</html>
