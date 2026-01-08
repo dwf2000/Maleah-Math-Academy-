@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maleah's Math Tutor - Rational Numbers & Like Terms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #4a5568;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        nav button {
+            background: white;
+            color: #4a5568;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        nav button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        nav button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: #4a5568;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        .concept-box {
+            background: #f0f4ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .example-box {
+            background: #fff4e6;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #ffebee;
+            border-left: 5px solid #f44336;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .formula {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .step {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .practice-question {
+            background: #f9f9f9;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        button.check-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+
+        button.check-btn:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        button.hint-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 5px;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            color: #c62828;
+            display: block;
+        }
+
+        .explanation {
+            background: #f0f4ff;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .fraction .numerator {
+            display: block;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 2px;
+        }
+
+        .fraction .denominator {
+            display: block;
+            padding-top: 2px;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Maleah's Math Tutor</h1>
+            <p>Mastering Rational Numbers & Like Terms</p>
+        </header>
+
+        <nav id="navigation">
+            <button onclick="showPage('home')" class="active">🏠 Home</button>
+            <button onclick="showPage('tutorial')">📚 How-To Guide</button>
+            <button onclick="showPage('set1')">📝 Problem Set 1</button>
+            <button onclick="showPage('set2')">📝 Problem Set 2</button>
+            <button onclick="showPage('set3')">📝 Problem Set 3</button>
+            <button onclick="showPage('practice')">✏️ Practice Mode</button>
+            <button onclick="showPage('answers')">✅ Answer Guide</button>
+        </nav>
+
+        <div class="content">
+            <!-- HOME PAGE -->
+            <div id="home" class="page active">
+                <h2>Welcome, Maleah! 👋</h2>
+                
+                <div class="concept-box">
+                    <h3>What You'll Learn Today</h3>
+                    <p>This interactive tutor will help you master three important math skills:</p>
+                    <ol>
+                        <li><strong>Writing Expressions</strong> - Converting real-world problems into math</li>
+                        <li><strong>Collecting Like Terms</strong> - Simplifying expressions by combining similar parts</li>
+                        <li><strong>Distributive Property</strong> - Multiplying and then simplifying</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <h3>How to Use This Tutor 📖</h3>
+                    <ol>
+                        <li><strong>Start with the How-To Guide</strong> - Learn the formulas and tricks</li>
+                        <li><strong>Study Each Problem Set</strong> - See detailed explanations for each type</li>
+                        <li><strong>Practice Mode</strong> - Try the problems yourself with instant feedback</li>
+                        <li><strong>Answer Guide</strong> - Check complete solutions with all steps</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h3>Why These Skills Matter 🌟</h3>
+                    <p>These aren't just random math problems! You'll use these skills for:</p>
+                    <ul>
+                        <li>Cooking (converting measurements)</li>
+                        <li>Shopping (calculating discounts and prices)</li>
+                        <li>Science class (working with formulas)</li>
+                        <li>Building things (measuring and calculating materials)</li>
+                        <li>Any job that uses math (which is almost all of them!)</li>
+                    </ul>
+                </div>
+
+                <h3>Ready to Start? Click "How-To Guide" above! 👆</h3>
+            </div>
+
+            <!-- TUTORIAL PAGE -->
+            <div id="tutorial" class="page">
+                <h2>📚 Complete How-To Guide</h2>
+
+                <h3>Skill #1: Converting Units</h3>
+                <div class="concept-box">
+                    <h4>What is Unit Conversion?</h4>
+                    <p>Unit conversion is changing from one type of measurement to another, like inches to feet or ounces to pounds.</p>
+                    
+                    <h4>The Secret: Multiplication, Not Division!</h4>
+                    <p>Think of it like this: If you have <strong>bigger pieces</strong>, you need <strong>fewer of them</strong>. So you multiply by a fraction less than 1.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Inches to Feet</h4>
+                    <div class="formula">
+                        inches × (1 foot / 12 inches) = feet
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p>Remember: 1 foot = 12 inches</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p>To go from SMALL (inches) to BIG (feet), multiply by <strong>1/12</strong></p>
+                        <p>Why? Because 12 inches makes only 1 foot, so each inch is only 1/12 of a foot!</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p>Example: 5/7 inches = ?</p>
+                        <p>5/7 × 1/12 = (5×1)/(7×12) = 5/84 feet</p>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <h4>Common Conversions to Remember 📏</h4>
+                    <table>
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Multiply By</th>
+                        </tr>
+                        <tr>
+                            <td>Inches</td>
+                            <td>Feet</td>
+                            <td>1/12</td>
+                        </tr>
+                        <tr>
+                            <td>Ounces</td>
+                            <td>Pounds</td>
+                            <td>1/16</td>
+                        </tr>
+                        <tr>
+                            <td>Feet</td>
+                            <td>Inches</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Pounds</td>
+                            <td>Ounces</td>
+                            <td>16</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Skill #2: Perimeter</h3>
+                <div class="concept-box">
+                    <h4>What is Perimeter?</h4>
+                    <p>Perimeter is the <strong>distance around</strong> the outside of a shape. Imagine walking around a fence - that's the perimeter!</p>
+                    
+                    <div class="formula">
+                        Perimeter of Square = 4 × side
+                    </div>
+                    
+                    <p><strong>Why?</strong> A square has 4 equal sides, so you add side + side + side + side = 4 × side</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example:</h4>
+                    <p>Square with sides of 2/3 inches</p>
+                    <p>Perimeter = 4 × 2/3 = 8/3 inches (which equals 2 2/3 inches)</p>
+                </div>
+
+                <h3>Skill #3: Speed/Rate Problems</h3>
+                <div class="concept-box">
+                    <h4>The Speed Formula</h4>
+                    <div class="formula">
+                        Speed = Distance ÷ Time
+                    </div>
+                    
+                    <p>Think of it this way: <strong>How much distance do you cover in one unit of time?</strong></p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example:</h4>
+                    <p>A train travels <strong>x miles</strong> in <strong>3/4 hour</strong></p>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p>Speed = Distance ÷ Time</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p>Speed = x ÷ 3/4</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p>To divide by a fraction, multiply by its reciprocal (flip it!)</p>
+                        <p>x ÷ 3/4 = x × 4/3 = 4x/3 miles per hour</p>
+                    </div>
+                </div>
+
+                <h3>Skill #4: Collecting Like Terms</h3>
+                <div class="concept-box">
+                    <h4>What are "Like Terms"?</h4>
+                    <p>Like terms are the parts of an expression that have the <strong>same variable (letter)</strong>.</p>
+                    <ul>
+                        <li><span class="highlight">3x and 5x</span> are like terms (both have x)</li>
+                        <li><span class="highlight">2y and -7y</span> are like terms (both have y)</li>
+                        <li>3x and 5y are NOT like terms (different letters)</li>
+                        <li>Numbers without variables are also like terms with each other</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>The Process 🎯</h4>
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p>Circle or underline all the terms with the same variable</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p>If they have fractions, find a common denominator</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p>Add or subtract the numerators (keep the variable!)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 4</span>
+                        <p>Simplify if possible</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: 1/2k - 3/8k</h4>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p>Both terms have "k" so they're like terms! ✓</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p>Find common denominator: 2 and 8 → Use 8</p>
+                        <p>1/2 = 4/8 (multiply top and bottom by 4)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p>Now subtract: 4/8k - 3/8k = 1/8k</p>
+                    </div>
+                </div>
+
+                <h3>Skill #5: Finding Common Denominators</h3>
+                <div class="concept-box">
+                    <h4>Why Do We Need Common Denominators?</h4>
+                    <p>You can't add or subtract fractions unless they have the same denominator. It's like trying to add apples and oranges!</p>
+                    
+                    <h4>Two Methods:</h4>
+                </div>
+
+                <div class="example-box">
+                    <h4>Method 1: Multiply the Denominators</h4>
+                    <p>For 1/3 and 1/5:</p>
+                    <ul>
+                        <li>Common denominator = 3 × 5 = 15</li>
+                        <li>1/3 = 5/15 (multiply top and bottom by 5)</li>
+                        <li>1/5 = 3/15 (multiply top and bottom by 3)</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Method 2: Find the LCM (Least Common Multiple)</h4>
+                    <p>For 1/6 and 1/8:</p>
+                    <ul>
+                        <li>Multiples of 6: 6, 12, 18, <span class="highlight">24</span>, 30...</li>
+                        <li>Multiples of 8: 8, 16, <span class="highlight">24</span>, 32...</li>
+                        <li>LCM = 24</li>
+                        <li>1/6 = 4/24 and 1/8 = 3/24</li>
+                    </ul>
+                </div>
+
+                <h3>Skill #6: Distributive Property</h3>
+                <div class="concept-box">
+                    <h4>What is the Distributive Property?</h4>
+                    <p>When you multiply a number by a group in parentheses, you have to multiply it by EACH term inside.</p>
+                    
+                    <div class="formula">
+                        a(b + c) = ab + ac
+                    </div>
+                    
+                    <p>Think of it like distributing candy: If you have 3 bags with (2 chocolates + 5 gummies) in each, you have 3×2 chocolates and 3×5 gummies!</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: 4(3x + 5)</h4>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p>Multiply 4 by the first term: 4 × 3x = 12x</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p>Multiply 4 by the second term: 4 × 5 = 20</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p>Write the answer: 12x + 20</p>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Common Mistakes to Avoid</h4>
+                    <ul>
+                        <li><strong>DON'T</strong> forget to distribute to BOTH terms</li>
+                        <li><strong>DON'T</strong> forget about negative signs</li>
+                        <li><strong>DON'T</strong> change the operation (+ or -) unless there's a negative outside</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PROBLEM SET 1 PAGE -->
+            <div id="set1" class="page">
+                <h2>📝 Problem Set 1: Writing Expressions</h2>
+                
+                <div class="practice-question">
+                    <h3>Problem 1a: 5/7 m inches in feet</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>Convert 5/7 inches into feet. Remember: we're going from a SMALL unit (inches) to a BIG unit (feet).</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Remember the conversion:</strong> 12 inches = 1 foot</p>
+                        <p>So each inch is 1/12 of a foot</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Set up the multiplication:</strong> 5/7 inches × 1/12</p>
+                        <p>We multiply by 1/12 to convert inches to feet</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Multiply the fractions:</strong></p>
+                        <div class="formula">
+                            5/7 × 1/12 = (5×1)/(7×12) = 5/84 feet
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 5/84 feet</strong></p>
+                        <p><span class="emoji">💡</span> <strong>Why not divide?</strong> Because there are MORE inches than feet in the same distance. If something is 12 inches, it's only 1 foot. So we need to make our number smaller, which means multiplying by a fraction less than 1!</p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 1b: Perimeter of a square with 2/3 inch sides</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>Find the total distance around a square where each side is 2/3 inch long.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Remember:</strong> A square has 4 equal sides</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Perimeter formula for a square:</strong></p>
+                        <div class="formula">
+                            Perimeter = 4 × side
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Substitute and calculate:</strong></p>
+                        <p>Perimeter = 4 × 2/3 = 8/3 inches</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 4</span>
+                        <p><strong>Convert to mixed number (optional):</strong></p>
+                        <p>8/3 = 2 2/3 inches</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 8/3 inches or 2 2/3 inches</strong></p>
+                        <p><span class="emoji">📐</span> Both forms are correct! The unit stays as inches because we never changed the unit.</p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 1c: Number of pounds in 9 ounces</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>Convert 9 ounces to pounds. Again, small unit to big unit!</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Remember the conversion:</strong> 16 ounces = 1 pound</p>
+                        <p>So each ounce is 1/16 of a pound</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Set up the multiplication:</strong></p>
+                        <div class="formula">
+                            9 ounces × 1/16 = 9/16 pounds
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 9/16 pounds</strong></p>
+                        <p><span class="emoji">⚖️</span> This fraction can't be simplified because 9 and 16 don't share any common factors!</p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 1d: Average speed of a train</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>A train travels <strong>x miles</strong> in <strong>3/4 hour</strong>. What's its speed?</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Remember the speed formula:</strong></p>
+                        <div class="formula">
+                            Speed = Distance ÷ Time
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Plug in the values:</strong></p>
+                        <p>Speed = x miles ÷ 3/4 hour</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>To divide by a fraction, multiply by its reciprocal:</strong></p>
+                        <div class="formula">
+                            x ÷ 3/4 = x × 4/3 = 4x/3
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 4x/3 miles per hour</strong></p>
+                        <p><span class="emoji">🚂</span> This makes sense! If the train goes x miles in 3/4 hour, it would go even MORE miles in a full hour!</p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 1e: Multi-Step Age Problem</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>Given relationships between ages, find Jill's age in terms of E (Eli's age).</p>
+                        <ul>
+                            <li>Devin is 1 1/4 years younger than Eli</li>
+                            <li>April is 1/5 as old as Devin</li>
+                            <li>Jill is 5 years older than April</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Find Devin's age:</strong></p>
+                        <p>Devin = Eli - 1 1/4 = E - 5/4</p>
+                        <p>(Convert 1 1/4 to improper fraction: 5/4)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Find April's age:</strong></p>
+                        <p>April = 1/5 × Devin = 1/5(E - 5/4)</p>
+                        <p>Distribute: = E/5 - 5/20 = E/5 - 1/4</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Find Jill's age:</strong></p>
+                        <p>Jill = April + 5</p>
+                        <p>Jill = E/5 - 1/4 + 5</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 4</span>
+                        <p><strong>Combine the constants:</strong></p>
+                        <p>Convert 5 to fourths: 5 = 20/4</p>
+                        <p>Jill = E/5 - 1/4 + 20/4 = E/5 + 19/4</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: E/5 + 19/4 or E/5 + 4 3/4</strong></p>
+                        <p><span class="emoji">👥</span> <strong>Key strategy:</strong> Work through ONE person at a time, writing each age in terms of E!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM SET 2 PAGE -->
+            <div id="set2" class="page">
+                <h2>📝 Problem Set 2: Collecting Like Terms</h2>
+                
+                <div class="practice-question">
+                    <h3>Problem 2a: 1/2k - 3/8k</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>Combine the like terms (both have "k").</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Identify like terms:</strong> Both terms have "k" ✓</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Find common denominator:</strong> 2 and 8 → Use 8</p>
+                        <p>1/2 = 4/8 (multiply top and bottom by 4)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Subtract:</strong></p>
+                        <div class="formula">
+                            4/8k - 3/8k = 1/8k
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 1/8k</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 2b: 2r/5 + 7r/15</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Identify like terms:</strong> Both terms have "r" ✓</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Find common denominator:</strong> 5 and 15 → Use 15</p>
+                        <p>2r/5 = 6r/15 (multiply top and bottom by 3)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Add:</strong></p>
+                        <div class="formula">
+                            6r/15 + 7r/15 = 13r/15
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 13r/15</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 2c: -1/3a - 1/2b - 3/4 + 1/5b - 2/5b + 5/8a</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>This is a BIG one! We have three different types of terms: "a" terms, "b" terms, and constants (plain numbers).</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Group like terms:</strong></p>
+                        <p>a terms: -1/3a + 5/8a</p>
+                        <p>b terms: -1/2b + 1/5b - 2/5b</p>
+                        <p>Constants: -3/4</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Combine a terms:</strong></p>
+                        <p>Common denominator for 3 and 8 is 24</p>
+                        <p>-1/3a = -8/24a</p>
+                        <p>5/8a = 15/24a</p>
+                        <p>-8/24a + 15/24a = 7/24a</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Combine b terms:</strong></p>
+                        <p>Common denominator for 2 and 5 is 10</p>
+                        <p>-1/2b = -5/10b</p>
+                        <p>1/5b - 2/5b = -1/5b = -2/10b</p>
+                        <p>-5/10b - 2/10b = -7/10b</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 4</span>
+                        <p><strong>Write the final answer:</strong></p>
+                        <div class="formula">
+                            7/24a - 7/10b - 3/4
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 7/24a - 7/10b - 3/4</strong></p>
+                        <p><span class="emoji">🎯</span> <strong>Pro tip:</strong> Work with ONE variable at a time to avoid confusion!</p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 2d: -p + 3/5q - 1/10q + 1/5 - 1/5p + 2 1/2p</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Group like terms:</strong></p>
+                        <p>p terms: -p - 1/5p + 2 1/2p</p>
+                        <p>q terms: 3/5q - 1/10q</p>
+                        <p>Constants: 1/5</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Combine p terms:</strong></p>
+                        <p>Convert to fifths: -p = -5/5p, 2 1/2p = 5/2p = 12.5/5p</p>
+                        <p>-5/5p - 1/5p + 12.5/5p = 6.5/5p = 13/10p</p>
+                        <p>Wait, let's be more careful! 2 1/2 = 5/2</p>
+                        <p>Common denominator is 10:</p>
+                        <p>-10/10p - 2/10p + 25/10p = 13/10p</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Combine q terms:</strong></p>
+                        <p>3/5q - 1/10q = 6/10q - 1/10q = 5/10q = 1/2q</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 13/10p + 1/2q + 1/5</strong> (or 1.3p + 0.5q + 0.2)</p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 2e: 5/7y - 1/14 - 5/7y + 3/14</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Notice something special!</strong></p>
+                        <p>We have +5/7y and -5/7y. These are opposites!</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Combine y terms:</strong></p>
+                        <p>5/7y - 5/7y = 0</p>
+                        <p>The y terms cancel out completely!</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Combine constants:</strong></p>
+                        <p>-1/14 + 3/14 = 2/14 = 1/7</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 1/7</strong></p>
+                        <p><span class="emoji">✨</span> When opposites cancel, you're left with just the constants!</p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 2f: 3m/8 - n/4 + 2n/2</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Simplify first:</strong></p>
+                        <p>2n/2 = n (anything divided by itself equals 1)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Group like terms:</strong></p>
+                        <p>m terms: 3m/8 (only one, nothing to combine!)</p>
+                        <p>n terms: -n/4 + n</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Combine n terms:</strong></p>
+                        <p>-n/4 + n = -n/4 + 4n/4 = 3n/4</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 3m/8 + 3n/4</strong></p>
+                        <p><span class="emoji">⚠️</span> m and n are different variables, so they can't be combined!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM SET 3 PAGE -->
+            <div id="set3" class="page">
+                <h2>📝 Problem Set 3: Distributive Property</h2>
+                
+                <div class="practice-question">
+                    <h3>Problem 3a: 4/5(15x - 5)</h3>
+                    
+                    <div class="concept-box">
+                        <h4>What This Problem Asks:</h4>
+                        <p>Use the distributive property to multiply 4/5 by each term in the parentheses.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Distribute 4/5 to the first term:</strong></p>
+                        <p>4/5 × 15x = (4×15)/(5×1) × x = 60/5 × x = 12x</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Distribute 4/5 to the second term:</strong></p>
+                        <p>4/5 × (-5) = -20/5 = -4</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Write the answer:</strong></p>
+                        <div class="formula">
+                            12x - 4
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 12x - 4</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 3b: 4/5(4/5c - 5)</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Distribute 4/5 to the first term:</strong></p>
+                        <p>4/5 × 4/5c = 16/25c</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Distribute 4/5 to the second term:</strong></p>
+                        <p>4/5 × (-5) = -20/5 = -4</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 16/25c - 4</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 3c: 2 4/5(3/4p + 1 1/5)</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Convert mixed numbers to improper fractions:</strong></p>
+                        <p>2 4/5 = 14/5</p>
+                        <p>1 1/5 = 6/5</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Rewrite:</strong> 14/5(3/4p + 6/5)</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Distribute 14/5 to first term:</strong></p>
+                        <p>14/5 × 3/4p = 42/20p = 21/10p</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 4</span>
+                        <p><strong>Distribute 14/5 to second term:</strong></p>
+                        <p>14/5 × 6/5 = 84/25</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: 21/10p + 84/25</strong></p>
+                    </div>
+                </div>
+
+                <div class="practice-question">
+                    <h3>Problem 3d: 8 - 4(1/6r - 3 1/2)</h3>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 1</span>
+                        <p><strong>Distribute -4 to each term in parentheses:</strong></p>
+                        <p>-4 × 1/6r = -4/6r = -2/3r</p>
+                        <p>-4 × (-3 1/2) = -4 × (-7/2) = 28/2 = 14</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 2</span>
+                        <p><strong>Write it out:</strong></p>
+                        <p>8 - 2/3r + 14</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">Step 3</span>
+                        <p><strong>Combine constants:</strong></p>
+                        <p>8 + 14 = 22</p>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <p><strong>Answer: -2/3r + 22</strong></p>
+                        <p><span class="emoji">⚠️</span> Remember: negative × negative = positive!</p>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <h3>More Problems in Set 3</h3>
+                    <p>The homework has many more problems (3e through 3r). They all follow the same pattern:</p>
+                    <ol>
+                        <li>Convert mixed numbers to improper fractions</li>
+                        <li>Distribute (multiply) the outside number to EACH term inside</li>
+                        <li>Simplify each fraction</li>
+                        <li>Combine like terms if possible</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- PRACTICE MODE PAGE -->
+            <div id="practice" class="page">
+                <h2>✏️ Practice Mode</h2>
+                
+                <div class="tip-box">
+                    <h3>How Practice Mode Works</h3>
+                    <p>Answer each question below. Click "Check Answer" to see if you're right. If you're wrong, you'll get a detailed explanation of why and how to fix it!</p>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%;">0/10 Complete</div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 1: Convert 3/4 inches to feet</div>
+                    <p>Type your answer as a fraction (like 1/2 or 3/16):</p>
+                    <input type="text" id="practice1" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice1()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice1hint')">💡 Need a Hint?</button>
+                    <div id="practice1hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> Remember, 12 inches = 1 foot. So multiply 3/4 by 1/12!</p>
+                    </div>
+                    <div id="feedback1" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 2: Find the perimeter of a square with sides of 5/6 inches</div>
+                    <input type="text" id="practice2" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice2()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice2hint')">💡 Need a Hint?</button>
+                    <div id="practice2hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> Perimeter of a square = 4 × side</p>
+                    </div>
+                    <div id="feedback2" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 3: Simplify 2/3k + 1/6k</div>
+                    <input type="text" id="practice3" placeholder="Your answer (include the variable!)">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice3()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice3hint')">💡 Need a Hint?</button>
+                    <div id="practice3hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> Find a common denominator for 3 and 6. It's 6!</p>
+                    </div>
+                    <div id="feedback3" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 4: Simplify 3/5y - 3/5y + 1/2</div>
+                    <input type="text" id="practice4" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice4()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice4hint')">💡 Need a Hint?</button>
+                    <div id="practice4hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> The y terms are opposites - they cancel out!</p>
+                    </div>
+                    <div id="feedback4" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 5: Use distributive property: 3(2x + 5)</div>
+                    <input type="text" id="practice5" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice5()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice5hint')">💡 Need a Hint?</button>
+                    <div id="practice5hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> Multiply 3 by BOTH terms inside: 3×2x and 3×5</p>
+                    </div>
+                    <div id="feedback5" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 6: Speed problem - A car travels 120 miles in 2/3 hour. What's the speed?</div>
+                    <input type="text" id="practice6" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice6()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice6hint')">💡 Need a Hint?</button>
+                    <div id="practice6hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> Speed = Distance ÷ Time. Remember to flip the fraction when dividing!</p>
+                    </div>
+                    <div id="feedback6" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 7: Combine like terms: 2/5a - 1/3b + 3/10a</div>
+                    <input type="text" id="practice7" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice7()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice7hint')">💡 Need a Hint?</button>
+                    <div id="practice7hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> Combine the "a" terms together. Find common denominator for 5 and 10.</p>
+                    </div>
+                    <div id="feedback7" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 8: Distribute: 1/2(4x - 6)</div>
+                    <input type="text" id="practice8" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice8()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice8hint')">💡 Need a Hint?</button>
+                    <div id="practice8hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> 1/2 × 4x and 1/2 × (-6)</p>
+                    </div>
+                    <div id="feedback8" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 9: Convert 12 ounces to pounds</div>
+                    <input type="text" id="practice9" placeholder="Your answer as a fraction">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice9()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice9hint')">💡 Need a Hint?</button>
+                    <div id="practice9hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> 16 ounces = 1 pound. So multiply 12 by 1/16!</p>
+                    </div>
+                    <div id="feedback9" class="feedback"></div>
+                </div>
+
+                <div class="practice-question">
+                    <div class="question-text">Practice 10: Simplify: 5/8m - 1/4m + 1/2m</div>
+                    <input type="text" id="practice10" placeholder="Your answer">
+                    <br>
+                    <button class="check-btn" onclick="checkPractice10()">Check Answer</button>
+                    <button class="hint-btn" onclick="showHint('practice10hint')">💡 Need a Hint?</button>
+                    <div id="practice10hint" style="display:none;" class="tip-box">
+                        <p><strong>Hint:</strong> Common denominator for 8, 4, and 2 is 8!</p>
+                    </div>
+                    <div id="feedback10" class="feedback"></div>
+                </div>
+            </div>
+
+            <!-- ANSWER GUIDE PAGE -->
+            <div id="answers" class="page">
+                <h2>✅ Complete Answer Guide</h2>
+                
+                <div class="tip-box">
+                    <h3>How to Use This Guide</h3>
+                    <p>This section shows you the correct answer AND all the steps to get there for every problem on the homework!</p>
+                </div>
+
+                <h3>Problem Set 1 Answers</h3>
+                
+                <div class="example-box">
+                    <h4>1a. 5/7 m inches in feet</h4>
+                    <p><strong>Answer: 5/84 feet</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Remember: 12 inches = 1 foot, so 1 inch = 1/12 foot</li>
+                        <li>Multiply: 5/7 × 1/12</li>
+                        <li>= (5×1)/(7×12) = 5/84 feet</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>1b. Perimeter of square with 2/3 inch sides</h4>
+                    <p><strong>Answer: 8/3 inches (or 2 2/3 inches)</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Perimeter of square = 4 × side</li>
+                        <li>= 4 × 2/3</li>
+                        <li>= 8/3 inches = 2 2/3 inches</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>1c. Number of pounds in 9 oz</h4>
+                    <p><strong>Answer: 9/16 pounds</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Remember: 16 oz = 1 pound, so 1 oz = 1/16 pound</li>
+                        <li>9 oz × 1/16 = 9/16 pounds</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>1d. Average speed: x miles in 3/4 hour</h4>
+                    <p><strong>Answer: 4x/3 miles per hour</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Speed = Distance ÷ Time</li>
+                        <li>= x ÷ 3/4</li>
+                        <li>= x × 4/3 (flip and multiply)</li>
+                        <li>= 4x/3 mph</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>1e. Jill's age in terms of E</h4>
+                    <p><strong>Answer: E/5 + 19/4 (or E/5 + 4 3/4)</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Devin = E - 1 1/4 = E - 5/4</li>
+                        <li>April = 1/5 × Devin = 1/5(E - 5/4) = E/5 - 1/4</li>
+                        <li>Jill = April + 5 = E/5 - 1/4 + 5</li>
+                        <li>= E/5 - 1/4 + 20/4 = E/5 + 19/4</li>
+                    </ol>
+                </div>
+
+                <h3>Problem Set 2 Answers</h3>
+
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Answer</th>
+                        <th>Key Steps</th>
+                    </tr>
+                    <tr>
+                        <td>2a. 1/2k - 3/8k</td>
+                        <td><strong>1/8k</strong></td>
+                        <td>4/8k - 3/8k = 1/8k</td>
+                    </tr>
+                    <tr>
+                        <td>2b. 2r/5 + 7r/15</td>
+                        <td><strong>13r/15</strong></td>
+                        <td>6r/15 + 7r/15 = 13r/15</td>
+                    </tr>
+                    <tr>
+                        <td>2c. -1/3a - 1/2b - 3/4 + 1/5b - 2/5b + 5/8a</td>
+                        <td><strong>7/24a - 7/10b - 3/4</strong></td>
+                        <td>Group: (a terms) + (b terms) + (constant)</td>
+                    </tr>
+                    <tr>
+                        <td>2d. -p + 3/5q - 1/10q + 1/5 - 1/5p + 2 1/2p</td>
+                        <td><strong>6/5p + 1/2q + 1/5</strong></td>
+                        <td>Combine each variable separately</td>
+                    </tr>
+                    <tr>
+                        <td>2e. 5/7y - 1/14 - 5/7y + 3/14</td>
+                        <td><strong>1/7</strong></td>
+                        <td>y terms cancel; -1/14 + 3/14 = 2/14 = 1/7</td>
+                    </tr>
+                    <tr>
+                        <td>2f. 3m/8 - n/4 + 2n/2</td>
+                        <td><strong>3m/8 + 3n/4</strong></td>
+                        <td>2n/2 = n; then -n/4 + n = 3n/4</td>
+                    </tr>
+                </table>
+
+                <h3>Problem Set 3 Answers (Selected Examples)</h3>
+
+                <div class="example-box">
+                    <h4>3a. 4/5(15x - 5)</h4>
+                    <p><strong>Answer: 12x - 4</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Distribute: 4/5 × 15x = 60/5x = 12x</li>
+                        <li>Distribute: 4/5 × (-5) = -20/5 = -4</li>
+                        <li>Answer: 12x - 4</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>3b. 4/5(4/5c - 5)</h4>
+                    <p><strong>Answer: 16/25c - 4</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>4/5 × 4/5c = 16/25c</li>
+                        <li>4/5 × (-5) = -4</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>3d. 8 - 4(1/6r - 3 1/2)</h4>
+                    <p><strong>Answer: -2/3r + 22</strong></p>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Distribute -4: (-4) × 1/6r = -2/3r</li>
+                        <li>(-4) × (-3 1/2) = (-4) × (-7/2) = 14</li>
+                        <li>8 - 2/3r + 14 = -2/3r + 22</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <h3>Remember These Key Points! 🌟</h3>
+                    <ul>
+                        <li><strong>Unit conversions:</strong> Going from small to big? Multiply by a fraction!</li>
+                        <li><strong>Like terms:</strong> Same variable = can combine!</li>
+                        <li><strong>Common denominators:</strong> Must have these before adding/subtracting fractions</li>
+                        <li><strong>Distributive property:</strong> Multiply the outside number by EVERY term inside</li>
+                        <li><strong>Check your work:</strong> Does the answer make sense?</li>
+                    </ul>
+                </div>
+
+                <div class="concept-box">
+                    <h3>You've Got This, Maleah! 💪</h3>
+                    <p>These concepts might seem tricky at first, but with practice, they'll become second nature. Remember:</p>
+                    <ul>
+                        <li>Take your time with each step</li>
+                        <li>Write everything down clearly</li>
+                        <li>Ask questions when you're confused</li>
+                        <li>Practice makes progress!</li>
+                    </ul>
+                    <p style="text-align: center; font-size: 1.5em; margin-top: 20px;">
+                        <span class="emoji">📚</span> <strong>Keep learning and growing!</strong> <span class="emoji">🌟</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let correctAnswers = 0;
+        
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        function showHint(hintId) {
+            const hint = document.getElementById(hintId);
+            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = (correctAnswers / 10) * 100;
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = correctAnswers + '/10 Complete';
+        }
+        
+        function normalizeAnswer(answer) {
+            return answer.toLowerCase().replace(/\s+/g, '');
+        }
+        
+        function checkPractice1() {
+            const answer = document.getElementById('practice1').value;
+            const feedback = document.getElementById('feedback1');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '3/48' || normalized === '1/16') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Great job! 3/4 inches × 1/12 = 3/48 feet, which simplifies to 1/16 feet.</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else if (normalized === '1/15' || normalized === '4/48') {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <p>You're close! Remember to multiply, not divide.</p>
+                    <div class="explanation">
+                        <h4>Let's work through it:</h4>
+                        <p><strong>Step 1:</strong> 12 inches = 1 foot, so 1 inch = 1/12 foot</p>
+                        <p><strong>Step 2:</strong> 3/4 inches × 1/12 = 3/48 feet</p>
+                        <p><strong>Step 3:</strong> Simplify: 3/48 = 1/16 feet</p>
+                    </div>
+                `;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Let's work through it step by step:</h4>
+                        <p><strong>Remember:</strong> To convert inches to feet, MULTIPLY by 1/12</p>
+                        <p><strong>Step 1:</strong> Set up: 3/4 × 1/12</p>
+                        <p><strong>Step 2:</strong> Multiply: (3×1)/(4×12) = 3/48</p>
+                        <p><strong>Step 3:</strong> Simplify: 3/48 = 1/16 feet</p>
+                        <p><strong>Why multiply?</strong> Because feet are BIGGER than inches, so we need FEWER of them!</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice2() {
+            const answer = document.getElementById('practice2').value;
+            const feedback = document.getElementById('feedback2');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '20/6' || normalized === '10/3' || normalized === '3 1/3' || normalized === '31/3') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Perfect! Perimeter = 4 × 5/6 = 20/6 = 10/3 = 3 1/3 inches. Any of these forms is correct!</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Here's how to solve it:</h4>
+                        <p><strong>Step 1:</strong> Perimeter of a square = 4 × side</p>
+                        <p><strong>Step 2:</strong> Perimeter = 4 × 5/6 = 20/6 inches</p>
+                        <p><strong>Step 3:</strong> Simplify: 20/6 = 10/3 = 3 1/3 inches</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice3() {
+            const answer = document.getElementById('practice3').value;
+            const feedback = document.getElementById('feedback3');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '5/6k' || normalized === '5k/6') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Excellent! 2/3k + 1/6k = 4/6k + 1/6k = 5/6k</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Let's solve it together:</h4>
+                        <p><strong>Step 1:</strong> Both terms have "k" so they're like terms ✓</p>
+                        <p><strong>Step 2:</strong> Find common denominator: 3 and 6 → use 6</p>
+                        <p><strong>Step 3:</strong> Convert: 2/3k = 4/6k</p>
+                        <p><strong>Step 4:</strong> Add: 4/6k + 1/6k = 5/6k</p>
+                        <p><strong>Don't forget the variable "k" in your answer!</strong></p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice4() {
+            const answer = document.getElementById('practice4').value;
+            const feedback = document.getElementById('feedback4');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '1/2') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Perfect! The y terms cancel out (3/5y - 3/5y = 0), leaving just 1/2.</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Here's the trick:</h4>
+                        <p><strong>Step 1:</strong> Look at the y terms: 3/5y - 3/5y</p>
+                        <p><strong>Step 2:</strong> These are OPPOSITES! They cancel out completely = 0</p>
+                        <p><strong>Step 3:</strong> What's left? Just the constant: 1/2</p>
+                        <p><strong>Answer: 1/2</strong></p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice5() {
+            const answer = document.getElementById('practice5').value;
+            const feedback = document.getElementById('feedback5');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '6x+15' || normalized === '15+6x') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Great work! 3(2x + 5) = 6x + 15</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Let's distribute:</h4>
+                        <p><strong>Step 1:</strong> Multiply 3 by the first term: 3 × 2x = 6x</p>
+                        <p><strong>Step 2:</strong> Multiply 3 by the second term: 3 × 5 = 15</p>
+                        <p><strong>Step 3:</strong> Write the answer: 6x + 15</p>
+                        <p><strong>Remember:</strong> You must distribute to BOTH terms!</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice6() {
+            const answer = document.getElementById('practice6').value;
+            const feedback = document.getElementById('feedback6');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '180' || normalized === '180mph') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Perfect! 120 ÷ 2/3 = 120 × 3/2 = 180 mph</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Let's solve it:</h4>
+                        <p><strong>Formula:</strong> Speed = Distance ÷ Time</p>
+                        <p><strong>Step 1:</strong> Speed = 120 ÷ 2/3</p>
+                        <p><strong>Step 2:</strong> Flip and multiply: 120 × 3/2</p>
+                        <p><strong>Step 3:</strong> Calculate: 120 × 3/2 = 360/2 = 180 mph</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice7() {
+            const answer = document.getElementById('practice7').value;
+            const feedback = document.getElementById('feedback7');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '7/10a-1/3b' || normalized === '7a/10-1b/3' || normalized === '7a/10-b/3') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Excellent! You correctly combined the a terms: 2/5a + 3/10a = 7/10a</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Let's work through it:</h4>
+                        <p><strong>Step 1:</strong> Identify like terms: a terms and b term</p>
+                        <p><strong>Step 2:</strong> Combine a terms: 2/5a + 3/10a</p>
+                        <p><strong>Step 3:</strong> Common denominator: 10</p>
+                        <p><strong>Step 4:</strong> 4/10a + 3/10a = 7/10a</p>
+                        <p><strong>Step 5:</strong> Keep the b term: -1/3b</p>
+                        <p><strong>Answer: 7/10a - 1/3b</strong></p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice8() {
+            const answer = document.getElementById('practice8').value;
+            const feedback = document.getElementById('feedback8');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '2x-3') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Perfect! 1/2(4x - 6) = 2x - 3</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Let's distribute:</h4>
+                        <p><strong>Step 1:</strong> 1/2 × 4x = 4x/2 = 2x</p>
+                        <p><strong>Step 2:</strong> 1/2 × (-6) = -6/2 = -3</p>
+                        <p><strong>Answer: 2x - 3</strong></p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice9() {
+            const answer = document.getElementById('practice9').value;
+            const feedback = document.getElementById('feedback9');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '12/16' || normalized === '3/4') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Great! 12 oz × 1/16 = 12/16 = 3/4 pounds</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Here's how:</h4>
+                        <p><strong>Step 1:</strong> 16 oz = 1 pound, so 1 oz = 1/16 pound</p>
+                        <p><strong>Step 2:</strong> 12 oz × 1/16 = 12/16 pounds</p>
+                        <p><strong>Step 3:</strong> Simplify: 12/16 = 3/4 pounds</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function checkPractice10() {
+            const answer = document.getElementById('practice10').value;
+            const feedback = document.getElementById('feedback10');
+            const normalized = normalizeAnswer(answer);
+            
+            if (normalized === '7/8m' || normalized === '7m/8') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <h4>✅ Correct!</h4>
+                    <p>Excellent work! 5/8m - 2/8m + 4/8m = 7/8m</p>
+                `;
+                correctAnswers++;
+                updateProgress();
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <h4>❌ Not quite...</h4>
+                    <div class="explanation">
+                        <h4>Let's solve it:</h4>
+                        <p><strong>Step 1:</strong> All terms have "m" - they're like terms ✓</p>
+                        <p><strong>Step 2:</strong> Common denominator: 8</p>
+                        <p><strong>Step 3:</strong> Convert: 1/4m = 2/8m, 1/2m = 4/8m</p>
+                        <p><strong>Step 4:</strong> Combine: 5/8m - 2/8m + 4/8m = 7/8m</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
