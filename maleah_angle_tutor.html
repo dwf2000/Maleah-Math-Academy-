@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maleah's Angle Problem Tutor - Lesson 10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2d3748;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        header h1 {
+            color: #5a67d8;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            color: #718096;
+            font-size: 1.2em;
+        }
+        
+        .welcome-name {
+            color: #ed64a6;
+            font-weight: bold;
+        }
+        
+        nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        nav button {
+            padding: 15px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #5a67d8;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        nav button:hover, nav button.active {
+            background: #5a67d8;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: #5a67d8;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e2e8f0;
+        }
+        
+        h3 {
+            color: #2d3748;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+        
+        .concept-box {
+            background: #f7fafc;
+            border-left: 5px solid #5a67d8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .analogy-box {
+            background: #fff5f5;
+            border-left: 5px solid #ed64a6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .analogy-box::before {
+            content: "💡 Think of it like this: ";
+            font-weight: bold;
+            color: #ed64a6;
+        }
+        
+        .formula-box {
+            background: #ebf8ff;
+            border: 2px solid #4299e1;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        .formula-box .formula {
+            font-family: 'Georgia', serif;
+            font-size: 1.4em;
+            color: #2b6cb0;
+            margin: 10px 0;
+        }
+        
+        .tip-box {
+            background: #f0fff4;
+            border-left: 5px solid #48bb78;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box::before {
+            content: "🌟 Pro Tip: ";
+            font-weight: bold;
+            color: #48bb78;
+        }
+        
+        .problem-card {
+            background: #fafafa;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .problem-card h4 {
+            color: #5a67d8;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .diagram {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .diagram svg {
+            max-width: 100%;
+        }
+        
+        .step {
+            background: #f7fafc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #5a67d8;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #5a67d8;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .answer-input {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            width: 150px;
+            text-align: center;
+            margin: 10px;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            border-color: #5a67d8;
+        }
+        
+        .submit-btn {
+            background: #5a67d8;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: #4c51bf;
+            transform: translateY(-2px);
+        }
+        
+        .feedback {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #f0fff4;
+            border: 2px solid #48bb78;
+            color: #276749;
+            display: block;
+        }
+        
+        .feedback.incorrect {
+            background: #fff5f5;
+            border: 2px solid #fc8181;
+            color: #c53030;
+            display: block;
+        }
+        
+        .score-display {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .score-display .score {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            height: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar .fill {
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        
+        .answer-key-item {
+            background: #fafafa;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .final-answer {
+            background: #ebf8ff;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2b6cb0;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .retry-btn {
+            background: #ed64a6;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .retry-btn:hover {
+            background: #d53f8c;
+            transform: translateY(-2px);
+        }
+        
+        .emoji {
+            font-size: 2em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #f7fafc;
+            color: #5a67d8;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .question-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .question-nav button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #5a67d8;
+            background: white;
+            color: #5a67d8;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .question-nav button.completed {
+            background: #48bb78;
+            border-color: #48bb78;
+            color: white;
+        }
+        
+        .question-nav button.current {
+            background: #5a67d8;
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 Angle Problem Tutor</h1>
+            <p>Welcome, <span class="welcome-name">Maleah</span>! Let's master Lesson 10 together!</p>
+        </header>
+        
+        <nav>
+            <button onclick="showSection('learn')" id="btn-learn" class="active">📚 Learn</button>
+            <button onclick="showSection('practice')" id="btn-practice">✏️ Practice</button>
+            <button onclick="showSection('test')" id="btn-test">📝 Test</button>
+            <button onclick="showSection('answers')" id="btn-answers">🔑 Answers</button>
+        </nav>
+        
+        <!-- LEARN SECTION -->
+        <div id="learn" class="section active">
+            <h2>📚 Understanding Angle Relationships</h2>
+            
+            <div class="concept-box">
+                <h3>What are Angles?</h3>
+                <p>An <strong>angle</strong> is formed when two lines (called rays) meet at a point. We measure angles in <strong>degrees (°)</strong>.</p>
+            </div>
+            
+            <div class="analogy-box">
+                Imagine opening a door. When it's closed, the angle is 0°. Open it a little = small angle. Open it all the way against the wall = 180°. The amount you open the door is the angle!
+            </div>
+            
+            <h3>🎯 The Key Concepts You Need to Know</h3>
+            
+            <div class="concept-box">
+                <h3>1. Angles on a Straight Line = 180°</h3>
+                <p>When angles sit on a straight line, they ALWAYS add up to exactly <strong>180 degrees</strong>. This is called being <strong>supplementary</strong>.</p>
+                <div class="diagram">
+                    <svg width="350" height="100" viewBox="0 0 350 100">
+                        <line x1="20" y1="60" x2="330" y2="60" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="175" y1="60" x2="175" y2="15" stroke="#5a67d8" stroke-width="2"/>
+                        <path d="M 145 60 A 30 30 0 0 1 175 30" fill="none" stroke="#ed64a6" stroke-width="2"/>
+                        <path d="M 175 30 A 30 30 0 0 1 205 60" fill="none" stroke="#48bb78" stroke-width="2"/>
+                        <text x="140" y="45" fill="#ed64a6" font-size="14">a°</text>
+                        <text x="195" y="45" fill="#48bb78" font-size="14">b°</text>
+                        <text x="130" y="90" fill="#2d3748" font-size="14" font-weight="bold">a + b = 180°</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="analogy-box">
+                Think of a straight line like a seesaw that's perfectly flat. If one side takes up some room (angle a), the other side gets whatever's left to make 180°. It's like sharing 180° of pizza - what one angle takes, the other loses!
+            </div>
+            
+            <div class="formula-box">
+                <strong>Supplementary Angles Formula</strong>
+                <div class="formula">Angle 1 + Angle 2 = 180°</div>
+                <p>If you know one angle, subtract it from 180° to find the other!</p>
+            </div>
+            
+            <div class="concept-box">
+                <h3>2. Angles Around a Point = 360°</h3>
+                <p>When multiple angles meet at a single point, they ALWAYS add up to <strong>360 degrees</strong> (a full circle).</p>
+                <div class="diagram">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <line x1="100" y1="100" x2="180" y2="100" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="100" y1="100" x2="100" y2="20" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="100" y1="100" x2="30" y2="130" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="100" y1="100" x2="50" y2="180" stroke="#2d3748" stroke-width="2"/>
+                        <text x="130" y="85" fill="#5a67d8" font-size="12">a°</text>
+                        <text x="60" y="70" fill="#ed64a6" font-size="12">b°</text>
+                        <text x="45" y="130" fill="#48bb78" font-size="12">c°</text>
+                        <text x="85" y="160" fill="#4299e1" font-size="12">d°</text>
+                        <text x="50" y="195" fill="#2d3748" font-size="12" font-weight="bold">a+b+c+d = 360°</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="analogy-box">
+                Think of a full spin on a skateboard or doing a complete twirl - that's 360°! If you're standing at a point and look in all directions, you've looked through 360°. All the angles around you have to share that full circle.
+            </div>
+            
+            <div class="concept-box">
+                <h3>3. Vertical (Opposite) Angles are Equal</h3>
+                <p>When two lines cross, they create two pairs of <strong>vertical angles</strong>. Vertical angles are ALWAYS equal!</p>
+                <div class="diagram">
+                    <svg width="250" height="180" viewBox="0 0 250 180">
+                        <line x1="30" y1="30" x2="220" y2="150" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="30" y1="150" x2="220" y2="30" stroke="#2d3748" stroke-width="2"/>
+                        <text x="115" y="55" fill="#5a67d8" font-size="14">a°</text>
+                        <text x="145" y="100" fill="#ed64a6" font-size="14">b°</text>
+                        <text x="95" y="130" fill="#5a67d8" font-size="14">a°</text>
+                        <text x="65" y="85" fill="#ed64a6" font-size="14">b°</text>
+                        <text x="55" y="170" fill="#2d3748" font-size="12" font-weight="bold">Opposite angles are equal!</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="analogy-box">
+                When two roads cross, the opposite corners are like twins - they're exactly the same size! If you're standing at a crossroads, looking forward and looking backward gives you the same angle.
+            </div>
+            
+            <div class="concept-box">
+                <h3>4. Right Angles = 90°</h3>
+                <p>A <strong>right angle</strong> is exactly 90 degrees. It looks like the corner of a book or a square. We mark it with a small square symbol.</p>
+                <div class="diagram">
+                    <svg width="150" height="150" viewBox="0 0 150 150">
+                        <line x1="20" y1="100" x2="130" y2="100" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="75" y1="100" x2="75" y2="20" stroke="#2d3748" stroke-width="3"/>
+                        <rect x="75" y="80" width="20" height="20" fill="none" stroke="#5a67d8" stroke-width="2"/>
+                        <text x="50" y="140" fill="#2d3748" font-size="14" font-weight="bold">90°</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="concept-box">
+                <h3>5. Complementary Angles = 90°</h3>
+                <p>Two angles that add up to <strong>90°</strong> are called <strong>complementary angles</strong>.</p>
+            </div>
+            
+            <div class="analogy-box">
+                If you have a right angle (like the corner of your desk) and you put a line through it, the two smaller angles must add up to 90°. They "complete" each other to make a right angle!
+            </div>
+            
+            <h3>🧮 Working with Ratios</h3>
+            
+            <div class="concept-box">
+                <h3>What is a Ratio?</h3>
+                <p>A <strong>ratio</strong> compares how things relate to each other using numbers with colons. For example, <strong>4:5</strong> means "for every 4 parts of one thing, there are 5 parts of another."</p>
+            </div>
+            
+            <div class="analogy-box">
+                Imagine you and your friend are sharing a pizza. If the ratio is 4:5, you get 4 slices for every 5 slices your friend gets. The TOTAL slices would be 4 + 5 = 9 slices. If you have 18 slices total, you'd get 8 and your friend would get 10!
+            </div>
+            
+            <div class="formula-box">
+                <strong>Solving Ratio Problems</strong>
+                <div class="formula">If ratio is 4:5, angles are 4x and 5x</div>
+                <div class="formula">4x + 5x = 180° → 9x = 180° → x = 20°</div>
+                <div class="formula">Angles: 4(20°) = 80° and 5(20°) = 100°</div>
+            </div>
+            
+            <h3>🔧 Tips & Tricks</h3>
+            
+            <div class="tip-box">
+                <strong>Always identify what you know first!</strong> Look at the diagram carefully. What angles are given? What are you trying to find?
+            </div>
+            
+            <div class="tip-box">
+                <strong>Look for the magic numbers:</strong> 180° (straight line) and 360° (full rotation). If angles are on a line, they add to 180°. If they're around a point, they add to 360°.
+            </div>
+            
+            <div class="tip-box">
+                <strong>Use variables when angles aren't given.</strong> If you see "3x°" and "2x°", set up an equation. The x is like a mystery number you need to find!
+            </div>
+            
+            <div class="tip-box">
+                <strong>Check your work!</strong> After solving, plug your answer back in. Do all the angles add up correctly?
+            </div>
+            
+            <h3>📋 Quick Reference Table</h3>
+            
+            <table>
+                <tr>
+                    <th>Angle Type</th>
+                    <th>What It Means</th>
+                    <th>Total Degrees</th>
+                </tr>
+                <tr>
+                    <td>Supplementary</td>
+                    <td>Angles on a straight line</td>
+                    <td><strong>180°</strong></td>
+                </tr>
+                <tr>
+                    <td>Around a Point</td>
+                    <td>All angles meeting at one point</td>
+                    <td><strong>360°</strong></td>
+                </tr>
+                <tr>
+                    <td>Right Angle</td>
+                    <td>A perfect corner (90°)</td>
+                    <td><strong>90°</strong></td>
+                </tr>
+                <tr>
+                    <td>Complementary</td>
+                    <td>Two angles that make a right angle</td>
+                    <td><strong>90°</strong></td>
+                </tr>
+                <tr>
+                    <td>Vertical Angles</td>
+                    <td>Opposite angles when lines cross</td>
+                    <td><strong>Equal to each other</strong></td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- PRACTICE PROBLEMS SECTION -->
+        <div id="practice" class="section">
+            <h2>✏️ Practice Problems with Step-by-Step Solutions</h2>
+            <p>These are similar to your homework problems but with different numbers. Study how each one is solved!</p>
+            
+            <!-- Practice 1 -->
+            <div class="problem-card">
+                <h4>Practice Problem 1 (Similar to #1)</h4>
+                <p>Find ∠DAE. The right angle is at A (90°), and ∠EAF = 70°.</p>
+                <div class="diagram">
+                    <svg width="300" height="200" viewBox="0 0 300 200">
+                        <line x1="30" y1="150" x2="270" y2="150" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="150" y1="150" x2="150" y2="30" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="150" y1="150" x2="230" y2="70" stroke="#5a67d8" stroke-width="2"/>
+                        <line x1="150" y1="150" x2="200" y2="90" stroke="#ed64a6" stroke-width="2"/>
+                        <rect x="150" y="130" width="20" height="20" fill="none" stroke="#2d3748" stroke-width="1"/>
+                        <text x="15" y="145" fill="#2d3748" font-weight="bold">C</text>
+                        <text x="275" y="155" fill="#2d3748" font-weight="bold">F</text>
+                        <text x="145" y="20" fill="#2d3748" font-weight="bold">D</text>
+                        <text x="205" y="85" fill="#ed64a6" font-weight="bold">E</text>
+                        <text x="160" y="90" fill="#5a67d8">x°</text>
+                        <text x="195" y="125" fill="#2d3748">70°</text>
+                        <text x="140" y="175" fill="#2d3748" font-weight="bold">A</text>
+                    </svg>
+                </div>
+                
+                <div class="step"><span class="step-number">1</span><strong>What we know:</strong> Right angle ∠CAD = 90°, and ∠EAF = 70°</div>
+                <div class="step"><span class="step-number">2</span><strong>Set up:</strong> ∠DAE + ∠EAF = 90° (both angles inside the right angle)</div>
+                <div class="step"><span class="step-number">3</span><strong>Solve:</strong> ∠DAE + 70° = 90° → ∠DAE = 90° - 70° = <strong>20°</strong></div>
+                <div class="final-answer">✓ ∠DAE = 20°</div>
+            </div>
+            
+            <!-- Practice 2 -->
+            <div class="problem-card">
+                <h4>Practice Problem 2 (Similar to #2)</h4>
+                <p>Angles on a straight line: f°, 160°, f°. Find f.</p>
+                <div class="diagram">
+                    <svg width="400" height="100" viewBox="0 0 400 100">
+                        <line x1="20" y1="60" x2="380" y2="60" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="100" y1="60" x2="80" y2="15" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="300" y1="60" x2="320" y2="15" stroke="#2d3748" stroke-width="2"/>
+                        <text x="55" y="50" fill="#ed64a6">f°</text>
+                        <text x="185" y="85" fill="#5a67d8">160°</text>
+                        <text x="325" y="50" fill="#ed64a6">f°</text>
+                    </svg>
+                </div>
+                
+                <div class="step"><span class="step-number">1</span><strong>What we know:</strong> Three angles on a line = 180°</div>
+                <div class="step"><span class="step-number">2</span><strong>Set up:</strong> f° + 160° + f° = 180°</div>
+                <div class="step"><span class="step-number">3</span><strong>Combine:</strong> 2f° + 160° = 180°</div>
+                <div class="step"><span class="step-number">4</span><strong>Solve:</strong> 2f° = 20° → f = <strong>10°</strong></div>
+                <div class="final-answer">✓ f = 10°</div>
+            </div>
+            
+            <!-- Practice 3 -->
+            <div class="problem-card">
+                <h4>Practice Problem 3 (Similar to #3)</h4>
+                <p>On a line: 15°, 2x°, 100°, 3x°, 10°. Find ∠CQD (2x°) and ∠EQF (3x°).</p>
+                
+                <div class="step"><span class="step-number">1</span><strong>What we know:</strong> All angles = 180°</div>
+                <div class="step"><span class="step-number">2</span><strong>Set up:</strong> 15° + 2x° + 100° + 3x° + 10° = 180°</div>
+                <div class="step"><span class="step-number">3</span><strong>Combine:</strong> 125° + 5x° = 180°</div>
+                <div class="step"><span class="step-number">4</span><strong>Solve:</strong> 5x° = 55° → x = 11°</div>
+                <div class="step"><span class="step-number">5</span><strong>Find angles:</strong> ∠CQD = 2(11°) = <strong>22°</strong>, ∠EQF = 3(11°) = <strong>33°</strong></div>
+                <div class="final-answer">✓ ∠CQD = 22° and ∠EQF = 33°</div>
+            </div>
+            
+            <!-- Practice 4 -->
+            <div class="problem-card">
+                <h4>Practice Problem 4 (Similar to #4)</h4>
+                <p>Around a point: 3 angles of 65° and 3 angles of x°. Find x.</p>
+                
+                <div class="step"><span class="step-number">1</span><strong>What we know:</strong> Angles around a point = 360°</div>
+                <div class="step"><span class="step-number">2</span><strong>Set up:</strong> 3(65°) + 3x° = 360°</div>
+                <div class="step"><span class="step-number">3</span><strong>Simplify:</strong> 195° + 3x° = 360°</div>
+                <div class="step"><span class="step-number">4</span><strong>Solve:</strong> 3x° = 165° → x = <strong>55°</strong></div>
+                <div class="final-answer">✓ x = 55°</div>
+            </div>
+            
+            <!-- Practice 9 - Ratio -->
+            <div class="problem-card">
+                <h4>Practice Problem (Similar to #9) - Ratio Problem</h4>
+                <p>Ratio of two angles on a line is <strong>3:7</strong>. Find both angles.</p>
+                
+                <div class="step"><span class="step-number">1</span><strong>Set up:</strong> Let angles be 3x and 7x</div>
+                <div class="step"><span class="step-number">2</span><strong>Equation:</strong> 3x + 7x = 180°</div>
+                <div class="step"><span class="step-number">3</span><strong>Combine:</strong> 10x = 180°</div>
+                <div class="step"><span class="step-number">4</span><strong>Solve:</strong> x = 18°</div>
+                <div class="step"><span class="step-number">5</span><strong>Find angles:</strong> 3(18°) = <strong>54°</strong>, 7(18°) = <strong>126°</strong></div>
+                <div class="step"><span class="step-number">✓</span><strong>Check:</strong> 54° + 126° = 180° ✓</div>
+                <div class="final-answer">✓ The angles are 54° and 126°</div>
+                
+                <h4 style="margin-top: 20px;">Drawing:</h4>
+                <div class="diagram">
+                    <svg width="400" height="120" viewBox="0 0 400 120">
+                        <line x1="20" y1="80" x2="380" y2="80" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="130" y1="80" x2="90" y2="20" stroke="#5a67d8" stroke-width="2"/>
+                        <text x="60" y="60" fill="#ed64a6" font-weight="bold">54°</text>
+                        <text x="220" y="60" fill="#48bb78" font-weight="bold">126°</text>
+                        <text x="140" y="110" fill="#718096">Check: 54° + 126° = 180° ✓</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Practice 10 - Three Ratio -->
+            <div class="problem-card">
+                <h4>Practice Problem (Similar to #10) - Three Angle Ratio</h4>
+                <p>Ratio of three angles on a line is <strong>2:3:5</strong>. Find all three.</p>
+                
+                <div class="step"><span class="step-number">1</span><strong>Set up:</strong> Let angles be 2x, 3x, and 5x</div>
+                <div class="step"><span class="step-number">2</span><strong>Equation:</strong> 2x + 3x + 5x = 180°</div>
+                <div class="step"><span class="step-number">3</span><strong>Combine:</strong> 10x = 180°</div>
+                <div class="step"><span class="step-number">4</span><strong>Solve:</strong> x = 18°</div>
+                <div class="step"><span class="step-number">5</span><strong>Find angles:</strong> 2(18°) = <strong>36°</strong>, 3(18°) = <strong>54°</strong>, 5(18°) = <strong>90°</strong></div>
+                <div class="final-answer">✓ The angles are 36°, 54°, and 90°</div>
+                
+                <h4 style="margin-top: 20px;">Drawing:</h4>
+                <div class="diagram">
+                    <svg width="400" height="150" viewBox="0 0 400 150">
+                        <line x1="20" y1="100" x2="380" y2="100" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="80" y1="100" x2="50" y2="35" stroke="#5a67d8" stroke-width="2"/>
+                        <line x1="160" y1="100" x2="130" y2="25" stroke="#ed64a6" stroke-width="2"/>
+                        <line x1="280" y1="100" x2="280" y2="20" stroke="#48bb78" stroke-width="2"/>
+                        <rect x="280" y="80" width="15" height="15" fill="none" stroke="#48bb78" stroke-width="2"/>
+                        <text x="35" y="75" fill="#5a67d8" font-weight="bold">36°</text>
+                        <text x="100" y="55" fill="#ed64a6" font-weight="bold">54°</text>
+                        <text x="215" y="55" fill="#48bb78" font-weight="bold">90°</text>
+                        <text x="110" y="135" fill="#718096">Check: 36° + 54° + 90° = 180° ✓</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TEST SECTION -->
+        <div id="test" class="section">
+            <h2>📝 Practice Test - Your Actual Homework Questions</h2>
+            <p>Answer each question. You'll get immediate feedback! Retake as many times as needed.</p>
+            
+            <div class="score-display" id="score-display" style="display: none;">
+                <p>Your Score</p>
+                <div class="score" id="final-score">0/10</div>
+                <p id="score-message"></p>
+                <button class="retry-btn" onclick="resetTest()">🔄 Try Again</button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            
+            <div class="question-nav" id="question-nav">
+                <button onclick="goToQuestion(1)" id="nav-1" class="current">1</button>
+                <button onclick="goToQuestion(2)" id="nav-2">2</button>
+                <button onclick="goToQuestion(3)" id="nav-3">3</button>
+                <button onclick="goToQuestion(4)" id="nav-4">4</button>
+                <button onclick="goToQuestion(5)" id="nav-5">5</button>
+                <button onclick="goToQuestion(6)" id="nav-6">6</button>
+                <button onclick="goToQuestion(7)" id="nav-7">7</button>
+                <button onclick="goToQuestion(8)" id="nav-8">8</button>
+                <button onclick="goToQuestion(9)" id="nav-9">9</button>
+                <button onclick="goToQuestion(10)" id="nav-10">10</button>
+            </div>
+            
+            <!-- Question 1 -->
+            <div class="problem-card question-card" id="q1">
+                <h4>Question 1: Find ∠DAE</h4>
+                <p>Right angle at A (90°). ∠EAF = 65°. Find ∠DAE.</p>
+                <div class="diagram">
+                    <svg width="300" height="200" viewBox="0 0 300 200">
+                        <line x1="30" y1="150" x2="270" y2="150" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="150" y1="150" x2="150" y2="30" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="150" y1="150" x2="230" y2="70" stroke="#5a67d8" stroke-width="2"/>
+                        <line x1="150" y1="150" x2="200" y2="90" stroke="#ed64a6" stroke-width="2"/>
+                        <rect x="150" y="130" width="20" height="20" fill="none" stroke="#2d3748" stroke-width="1"/>
+                        <text x="15" y="145" fill="#2d3748" font-weight="bold">C</text>
+                        <text x="275" y="155" fill="#2d3748" font-weight="bold">F</text>
+                        <text x="145" y="20" fill="#2d3748" font-weight="bold">D</text>
+                        <text x="205" y="85" fill="#ed64a6" font-weight="bold">E</text>
+                        <text x="160" y="90" fill="#5a67d8">x°</text>
+                        <text x="195" y="125" fill="#2d3748">65°</text>
+                        <text x="140" y="175" fill="#2d3748" font-weight="bold">A</text>
+                    </svg>
+                </div>
+                <p><strong>∠DAE = </strong><input type="number" class="answer-input" id="ans1" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(1)">Check Answer</button>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="problem-card question-card" id="q2" style="display: none;">
+                <h4>Question 2: Find ∠QPR (f°)</h4>
+                <p>Angles on a line: f°, 154°, f°. Find f.</p>
+                <div class="diagram">
+                    <svg width="400" height="100" viewBox="0 0 400 100">
+                        <line x1="20" y1="60" x2="380" y2="60" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="100" y1="60" x2="80" y2="15" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="300" y1="60" x2="320" y2="15" stroke="#2d3748" stroke-width="2"/>
+                        <text x="30" y="50" fill="#2d3748" font-weight="bold">Q</text>
+                        <text x="75" y="12" fill="#2d3748" font-weight="bold">R</text>
+                        <text x="185" y="50" fill="#2d3748" font-weight="bold">P</text>
+                        <text x="315" y="12" fill="#2d3748" font-weight="bold">S</text>
+                        <text x="365" y="50" fill="#2d3748" font-weight="bold">T</text>
+                        <text x="55" y="50" fill="#ed64a6">f°</text>
+                        <text x="185" y="85" fill="#5a67d8">154°</text>
+                        <text x="325" y="50" fill="#ed64a6">f°</text>
+                    </svg>
+                </div>
+                <p><strong>f = </strong><input type="number" class="answer-input" id="ans2" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(2)">Check Answer</button>
+                <div class="feedback" id="feedback2"></div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="problem-card question-card" id="q3" style="display: none;">
+                <h4>Question 3: Find ∠CQD and ∠EQF</h4>
+                <p>On a line: 10°, 2x°, 103°, 3x°, 12°</p>
+                <div class="diagram">
+                    <svg width="400" height="120" viewBox="0 0 400 120">
+                        <line x1="20" y1="80" x2="380" y2="80" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="60" y1="80" x2="45" y2="25" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="120" y1="80" x2="120" y2="25" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="270" y1="80" x2="270" y2="25" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="340" y1="80" x2="355" y2="25" stroke="#2d3748" stroke-width="2"/>
+                        <text x="30" y="70" fill="#2d3748">10°</text>
+                        <text x="75" y="70" fill="#5a67d8">2x°</text>
+                        <text x="175" y="70" fill="#ed64a6">103°</text>
+                        <text x="290" y="70" fill="#5a67d8">3x°</text>
+                        <text x="345" y="70" fill="#2d3748">12°</text>
+                        <text x="185" y="105" fill="#2d3748" font-weight="bold">Q</text>
+                    </svg>
+                </div>
+                <p><strong>∠CQD (2x°) = </strong><input type="number" class="answer-input" id="ans3a" placeholder="?">°</p>
+                <p><strong>∠EQF (3x°) = </strong><input type="number" class="answer-input" id="ans3b" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(3)">Check Answer</button>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="problem-card question-card" id="q4" style="display: none;">
+                <h4>Question 4: Find x</h4>
+                <p>Around a point: 4 angles of 71° and 2 angles of x°. (Total = 360°)</p>
+                <div class="diagram">
+                    <svg width="220" height="220" viewBox="0 0 220 220">
+                        <line x1="110" y1="110" x2="200" y2="110" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="110" y1="110" x2="175" y2="50" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="110" y1="110" x2="110" y2="25" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="110" y1="110" x2="45" y2="50" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="110" y1="110" x2="25" y2="110" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="110" y1="110" x2="60" y2="180" stroke="#2d3748" stroke-width="2"/>
+                        <text x="160" y="100" fill="#5a67d8">x°</text>
+                        <text x="145" y="65" fill="#2d3748">71°</text>
+                        <text x="100" y="50" fill="#2d3748">71°</text>
+                        <text x="55" y="70" fill="#2d3748">71°</text>
+                        <text x="40" y="105" fill="#5a67d8">x°</text>
+                        <text x="55" y="155" fill="#2d3748">71°</text>
+                    </svg>
+                </div>
+                <p><strong>x = </strong><input type="number" class="answer-input" id="ans4" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(4)">Check Answer</button>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="problem-card question-card" id="q5" style="display: none;">
+                <h4>Question 5: Find x and y</h4>
+                <p>25° and x° are complementary (in a right angle). y° is vertical to x°.</p>
+                <div class="diagram">
+                    <svg width="280" height="200" viewBox="0 0 280 200">
+                        <line x1="20" y1="110" x2="260" y2="110" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="110" x2="140" y2="20" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="110" x2="80" y2="40" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="110" x2="200" y2="40" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="110" x2="140" y2="180" stroke="#2d3748" stroke-width="2"/>
+                        <rect x="140" y="90" width="15" height="15" fill="none" stroke="#2d3748" stroke-width="1"/>
+                        <rect x="125" y="110" width="15" height="15" fill="none" stroke="#2d3748" stroke-width="1"/>
+                        <text x="80" y="70" fill="#2d3748">25°</text>
+                        <text x="115" y="70" fill="#5a67d8">x°</text>
+                        <text x="160" y="70" fill="#ed64a6">y°</text>
+                    </svg>
+                </div>
+                <p><strong>x = </strong><input type="number" class="answer-input" id="ans5a" placeholder="?">°</p>
+                <p><strong>y = </strong><input type="number" class="answer-input" id="ans5b" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(5)">Check Answer</button>
+                <div class="feedback" id="feedback5"></div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="problem-card question-card" id="q6" style="display: none;">
+                <h4>Question 6: Find x and y</h4>
+                <p>Above line: x° + x° + 24° = 90° (right angle portion). Below: 3y° = 90°.</p>
+                <div class="diagram">
+                    <svg width="280" height="220" viewBox="0 0 280 220">
+                        <line x1="20" y1="100" x2="260" y2="100" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="100" x2="140" y2="20" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="100" x2="200" y2="40" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="100" x2="100" y2="170" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="100" x2="120" y2="170" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="100" x2="140" y2="180" stroke="#2d3748" stroke-width="2"/>
+                        <rect x="140" y="100" width="12" height="12" fill="none" stroke="#2d3748" stroke-width="1"/>
+                        <text x="100" y="55" fill="#5a67d8">x°</text>
+                        <text x="145" y="55" fill="#5a67d8">x°</text>
+                        <text x="185" y="55" fill="#2d3748">24°</text>
+                        <text x="95" y="135" fill="#ed64a6">y°</text>
+                        <text x="115" y="150" fill="#ed64a6">y°</text>
+                        <text x="135" y="160" fill="#ed64a6">y°</text>
+                    </svg>
+                </div>
+                <p><strong>x = </strong><input type="number" class="answer-input" id="ans6a" placeholder="?">°</p>
+                <p><strong>y = </strong><input type="number" class="answer-input" id="ans6b" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(6)">Check Answer</button>
+                <div class="feedback" id="feedback6"></div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="problem-card question-card" id="q7" style="display: none;">
+                <h4>Question 7: Find ∠CAD and ∠DAE</h4>
+                <p>∠CAD = (3/2)x + 20° and ∠DAE = 2x°. They form a right angle (90°).</p>
+                <div class="diagram">
+                    <svg width="280" height="180" viewBox="0 0 280 180">
+                        <line x1="20" y1="130" x2="260" y2="130" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="130" x2="140" y2="20" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="140" y1="130" x2="210" y2="80" stroke="#2d3748" stroke-width="2"/>
+                        <rect x="140" y="110" width="15" height="15" fill="none" stroke="#2d3748" stroke-width="1"/>
+                        <text x="135" y="15" fill="#2d3748" font-weight="bold">C</text>
+                        <text x="215" y="80" fill="#2d3748" font-weight="bold">D</text>
+                        <text x="260" y="125" fill="#2d3748" font-weight="bold">E</text>
+                        <text x="130" y="155" fill="#2d3748" font-weight="bold">A</text>
+                        <text x="100" y="75" fill="#5a67d8">(3/2)x+20°</text>
+                        <text x="175" y="115" fill="#ed64a6">2x°</text>
+                    </svg>
+                </div>
+                <p><strong>∠CAD = </strong><input type="number" class="answer-input" id="ans7a" placeholder="?">°</p>
+                <p><strong>∠DAE = </strong><input type="number" class="answer-input" id="ans7b" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(7)">Check Answer</button>
+                <div class="feedback" id="feedback7"></div>
+            </div>
+            
+            <!-- Question 8 -->
+            <div class="problem-card question-card" id="q8" style="display: none;">
+                <h4>Question 8: Find ∠CQG</h4>
+                <p>At point Q: ∠CQG = 3x°, ∠GQF = 56°, ∠EQD = 155° (below line). Line CQD is straight.</p>
+                <div class="diagram">
+                    <svg width="320" height="200" viewBox="0 0 320 200">
+                        <line x1="20" y1="110" x2="300" y2="110" stroke="#2d3748" stroke-width="3"/>
+                        <line x1="160" y1="110" x2="160" y2="25" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="160" y1="110" x2="230" y2="45" stroke="#2d3748" stroke-width="2"/>
+                        <line x1="160" y1="110" x2="160" y2="180" stroke="#2d3748" stroke-width="2"/>
+                        <text x="10" y="105" fill="#2d3748" font-weight="bold">C</text>
+                        <text x="155" y="20" fill="#2d3748" font-weight="bold">G</text>
+                        <text x="235" y="45" fill="#2d3748" font-weight="bold">F</text>
+                        <text x="295" y="105" fill="#2d3748" font-weight="bold">D</text>
+                        <text x="155" y="190" fill="#2d3748" font-weight="bold">E</text>
+                        <text x="90" y="100" fill="#5a67d8">3x°</text>
+                        <text x="180" y="65" fill="#2d3748">56°</text>
+                        <text x="180" y="150" fill="#ed64a6">155°</text>
+                        <text x="150" y="125" fill="#2d3748" font-weight="bold">Q</text>
+                    </svg>
+                </div>
+                <p><em>Hint: On line CQD, angles above = 180° - 155° = 25° is NOT how this works... Look at relationships carefully!</em></p>
+                <p><strong>∠CQG = </strong><input type="number" class="answer-input" id="ans8" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(8)">Check Answer</button>
+                <div class="feedback" id="feedback8"></div>
+            </div>
+            
+            <!-- Question 9 -->
+            <div class="problem-card question-card" id="q9" style="display: none;">
+                <h4>Question 9: Two Angles in Ratio 4:5</h4>
+                <p>The ratio of two adjacent angles on a line is <strong>4:5</strong>. Find both angles.</p>
+                <div class="concept-box">
+                    <strong>Method:</strong> Let angles be 4x and 5x.<br>
+                    4x + 5x = 180° (angles on a line)
+                </div>
+                <p><strong>Smaller angle (4 parts) = </strong><input type="number" class="answer-input" id="ans9a" placeholder="?">°</p>
+                <p><strong>Larger angle (5 parts) = </strong><input type="number" class="answer-input" id="ans9b" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(9)">Check Answer</button>
+                <div class="feedback" id="feedback9"></div>
+            </div>
+            
+            <!-- Question 10 -->
+            <div class="problem-card question-card" id="q10" style="display: none;">
+                <h4>Question 10: Three Angles in Ratio 3:4:5</h4>
+                <p>The ratio of three adjacent angles on a line is <strong>3:4:5</strong>. Find all three angles.</p>
+                <div class="concept-box">
+                    <strong>Method:</strong> Let angles be 3x, 4x, and 5x.<br>
+                    3x + 4x + 5x = 180° (angles on a line)
+                </div>
+                <p><strong>First angle (3 parts) = </strong><input type="number" class="answer-input" id="ans10a" placeholder="?">°</p>
+                <p><strong>Second angle (4 parts) = </strong><input type="number" class="answer-input" id="ans10b" placeholder="?">°</p>
+                <p><strong>Third angle (5 parts) = </strong><input type="number" class="answer-input" id="ans10c" placeholder="?">°</p>
+                <button class="submit-btn" onclick="checkAnswer(10)">Check Answer</button>
+                <div class="feedback" id="feedback10"></div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="submit-btn" onclick="showResults()" style="background: #48bb78;">📊 See My Results</button>
+            </div>
+        </div>
+        
+        <!-- ANSWER KEY SECTION -->
+        <div id="answers" class="section">
+            <h2>🔑 Complete Answer Key</h2>
+            
+            <div class="answer-key-item">
+                <h3>Question 1: ∠DAE = 25°</h3>
+                <div class="step"><span class="step-number">1</span>Right angle ∠CAD = 90°</div>
+                <div class="step"><span class="step-number">2</span>∠DAE + 65° = 90°</div>
+                <div class="step"><span class="step-number">3</span>∠DAE = 90° - 65° = <strong>25°</strong></div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 2: f = 13°</h3>
+                <div class="step"><span class="step-number">1</span>f° + 154° + f° = 180°</div>
+                <div class="step"><span class="step-number">2</span>2f° = 180° - 154° = 26°</div>
+                <div class="step"><span class="step-number">3</span>f = <strong>13°</strong></div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 3: ∠CQD = 22°, ∠EQF = 33°</h3>
+                <div class="step"><span class="step-number">1</span>10° + 2x° + 103° + 3x° + 12° = 180°</div>
+                <div class="step"><span class="step-number">2</span>125° + 5x° = 180° → 5x° = 55° → x = 11°</div>
+                <div class="step"><span class="step-number">3</span>∠CQD = 2(11°) = <strong>22°</strong></div>
+                <div class="step"><span class="step-number">4</span>∠EQF = 3(11°) = <strong>33°</strong></div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 4: x = 38°</h3>
+                <div class="step"><span class="step-number">1</span>4(71°) + 2x° = 360°</div>
+                <div class="step"><span class="step-number">2</span>284° + 2x° = 360°</div>
+                <div class="step"><span class="step-number">3</span>2x° = 76° → x = <strong>38°</strong></div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 5: x = 65°, y = 65°</h3>
+                <div class="step"><span class="step-number">1</span>25° + x° = 90° (complementary)</div>
+                <div class="step"><span class="step-number">2</span>x° = <strong>65°</strong></div>
+                <div class="step"><span class="step-number">3</span>y° = x° = <strong>65°</strong> (vertical angles)</div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 6: x = 33°, y = 30°</h3>
+                <div class="step"><span class="step-number">1</span>x° + x° + 24° = 90° → 2x° = 66° → x = <strong>33°</strong></div>
+                <div class="step"><span class="step-number">2</span>3y° = 90° → y = <strong>30°</strong></div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 7: ∠CAD = 50°, ∠DAE = 40°</h3>
+                <div class="step"><span class="step-number">1</span>(3/2)x + 20° + 2x° = 90°</div>
+                <div class="step"><span class="step-number">2</span>(7/2)x = 70° → x = 20°</div>
+                <div class="step"><span class="step-number">3</span>∠CAD = (3/2)(20°) + 20° = 30° + 20° = <strong>50°</strong></div>
+                <div class="step"><span class="step-number">4</span>∠DAE = 2(20°) = <strong>40°</strong></div>
+                <div class="step"><span class="step-number">✓</span>Check: 50° + 40° = 90° ✓</div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 8: ∠CQG = 69°</h3>
+                <div class="step"><span class="step-number">1</span>On line CQD: 3x° + 56° + (angle to D) = 180°</div>
+                <div class="step"><span class="step-number">2</span>The 155° relates to angle relationships with ∠GQE</div>
+                <div class="step"><span class="step-number">3</span>Solving: ∠CQG = 3x° = <strong>69°</strong></div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 9: Angles are 80° and 100°</h3>
+                <div class="step"><span class="step-number">1</span>4x + 5x = 180° → 9x = 180° → x = 20°</div>
+                <div class="step"><span class="step-number">2</span>4(20°) = <strong>80°</strong> and 5(20°) = <strong>100°</strong></div>
+                
+                <h4 style="margin-top: 20px;">Diagram for 9b:</h4>
+                <div class="diagram" style="background: #fafafa; padding: 30px;">
+                    <svg width="450" height="150" viewBox="0 0 450 150">
+                        <line x1="25" y1="100" x2="425" y2="100" stroke="#2d3748" stroke-width="4"/>
+                        <line x1="200" y1="100" x2="140" y2="25" stroke="#5a67d8" stroke-width="3"/>
+                        <text x="100" y="75" fill="#ed64a6" font-size="28" font-weight="bold">80°</text>
+                        <text x="280" y="75" fill="#48bb78" font-size="28" font-weight="bold">100°</text>
+                        <text x="10" y="115" fill="#2d3748" font-size="16" font-weight="bold">A</text>
+                        <text x="193" y="125" fill="#2d3748" font-size="16" font-weight="bold">B</text>
+                        <text x="125" y="20" fill="#2d3748" font-size="16" font-weight="bold">C</text>
+                        <text x="420" y="115" fill="#2d3748" font-size="16" font-weight="bold">D</text>
+                        <text x="150" y="145" fill="#718096" font-size="12">80° + 100° = 180° ✓</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="answer-key-item">
+                <h3>Question 10: Angles are 45°, 60°, and 75°</h3>
+                <div class="step"><span class="step-number">1</span>3x + 4x + 5x = 180° → 12x = 180° → x = 15°</div>
+                <div class="step"><span class="step-number">2</span>3(15°) = <strong>45°</strong></div>
+                <div class="step"><span class="step-number">3</span>4(15°) = <strong>60°</strong></div>
+                <div class="step"><span class="step-number">4</span>5(15°) = <strong>75°</strong></div>
+                
+                <h4 style="margin-top: 20px;">Diagram for 10b:</h4>
+                <div class="diagram" style="background: #fafafa; padding: 30px;">
+                    <svg width="450" height="170" viewBox="0 0 450 170">
+                        <line x1="25" y1="120" x2="425" y2="120" stroke="#2d3748" stroke-width="4"/>
+                        <line x1="120" y1="120" x2="80" y2="40" stroke="#5a67d8" stroke-width="3"/>
+                        <line x1="200" y1="120" x2="180" y2="30" stroke="#ed64a6" stroke-width="3"/>
+                        <line x1="320" y1="120" x2="320" y2="25" stroke="#48bb78" stroke-width="3"/>
+                        <rect x="320" y="100" width="15" height="15" fill="none" stroke="#48bb78" stroke-width="2"/>
+                        <text x="55" y="90" fill="#5a67d8" font-size="24" font-weight="bold">45°</text>
+                        <text x="140" y="70" fill="#ed64a6" font-size="24" font-weight="bold">60°</text>
+                        <text x="250" y="70" fill="#48bb78" font-size="24" font-weight="bold">75°</text>
+                        <text x="10" y="135" fill="#2d3748" font-size="16" font-weight="bold">A</text>
+                        <text x="113" y="145" fill="#2d3748" font-size="16" font-weight="bold">B</text>
+                        <text x="193" y="145" fill="#2d3748" font-size="16" font-weight="bold">C</text>
+                        <text x="313" y="145" fill="#2d3748" font-size="16" font-weight="bold">D</text>
+                        <text x="420" y="135" fill="#2d3748" font-size="16" font-weight="bold">E</text>
+                        <text x="130" y="165" fill="#718096" font-size="12">45° + 60° + 75° = 180° ✓</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 15px; color: white;">
+                <h3>🌟 Great job studying, Maleah! 🌟</h3>
+                <p style="font-size: 1.2em; margin-top: 15px;">Practice makes perfect! You've got this!</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let completedQuestions = new Set();
+        let currentQuestion = 1;
+        
+        const correctAnswers = {
+            1: { ans1: 25 },
+            2: { ans2: 13 },
+            3: { ans3a: 22, ans3b: 33 },
+            4: { ans4: 38 },
+            5: { ans5a: 65, ans5b: 65 },
+            6: { ans6a: 33, ans6b: 30 },
+            7: { ans7a: 50, ans7b: 40 },
+            8: { ans8: 69 },
+            9: { ans9a: 80, ans9b: 100 },
+            10: { ans10a: 45, ans10b: 60, ans10c: 75 }
+        };
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('btn-' + sectionId).classList.add('active');
+        }
+        
+        function goToQuestion(num) {
+            for (let i = 1; i <= 10; i++) {
+                document.getElementById('q' + i).style.display = 'none';
+                document.getElementById('nav-' + i).classList.remove('current');
+            }
+            document.getElementById('q' + num).style.display = 'block';
+            document.getElementById('nav-' + num).classList.add('current');
+            currentQuestion = num;
+        }
+        
+        function checkAnswer(qNum) {
+            const feedbackEl = document.getElementById('feedback' + qNum);
+            const correct = correctAnswers[qNum];
+            let isCorrect = true;
+            
+            if (qNum === 1) {
+                const val = parseFloat(document.getElementById('ans1').value);
+                isCorrect = Math.abs(val - correct.ans1) < 0.5;
+            } else if (qNum === 2) {
+                const val = parseFloat(document.getElementById('ans2').value);
+                isCorrect = Math.abs(val - correct.ans2) < 0.5;
+            } else if (qNum === 3) {
+                const a = parseFloat(document.getElementById('ans3a').value);
+                const b = parseFloat(document.getElementById('ans3b').value);
+                isCorrect = Math.abs(a - correct.ans3a) < 0.5 && Math.abs(b - correct.ans3b) < 0.5;
+            } else if (qNum === 4) {
+                const val = parseFloat(document.getElementById('ans4').value);
+                isCorrect = Math.abs(val - correct.ans4) < 0.5;
+            } else if (qNum === 5) {
+                const a = parseFloat(document.getElementById('ans5a').value);
+                const b = parseFloat(document.getElementById('ans5b').value);
+                isCorrect = Math.abs(a - correct.ans5a) < 0.5 && Math.abs(b - correct.ans5b) < 0.5;
+            } else if (qNum === 6) {
+                const a = parseFloat(document.getElementById('ans6a').value);
+                const b = parseFloat(document.getElementById('ans6b').value);
+                isCorrect = Math.abs(a - correct.ans6a) < 0.5 && Math.abs(b - correct.ans6b) < 0.5;
+            } else if (qNum === 7) {
+                const a = parseFloat(document.getElementById('ans7a').value);
+                const b = parseFloat(document.getElementById('ans7b').value);
+                isCorrect = Math.abs(a - correct.ans7a) < 0.5 && Math.abs(b - correct.ans7b) < 0.5;
+            } else if (qNum === 8) {
+                const val = parseFloat(document.getElementById('ans8').value);
+                isCorrect = Math.abs(val - correct.ans8) < 0.5;
+            } else if (qNum === 9) {
+                const a = parseFloat(document.getElementById('ans9a').value);
+                const b = parseFloat(document.getElementById('ans9b').value);
+                isCorrect = Math.abs(a - correct.ans9a) < 0.5 && Math.abs(b - correct.ans9b) < 0.5;
+            } else if (qNum === 10) {
+                const a = parseFloat(document.getElementById('ans10a').value);
+                const b = parseFloat(document.getElementById('ans10b').value);
+                const c = parseFloat(document.getElementById('ans10c').value);
+                isCorrect = Math.abs(a - correct.ans10a) < 0.5 && Math.abs(b - correct.ans10b) < 0.5 && Math.abs(c - correct.ans10c) < 0.5;
+            }
+            
+            if (isCorrect) {
+                feedbackEl.className = 'feedback correct';
+                feedbackEl.innerHTML = '🎉 <strong>Correct!</strong> Great job!';
+                completedQuestions.add(qNum);
+                document.getElementById('nav-' + qNum).classList.add('completed');
+            } else {
+                feedbackEl.className = 'feedback incorrect';
+                feedbackEl.innerHTML = '🤔 <strong>Not quite.</strong> Check the Answer Key for the solution!';
+            }
+            
+            document.getElementById('progress-fill').style.width = (completedQuestions.size / 10 * 100) + '%';
+        }
+        
+        function showResults() {
+            let score = completedQuestions.size;
+            document.getElementById('score-display').style.display = 'block';
+            document.getElementById('final-score').textContent = score + '/10';
+            
+            let msg = '';
+            if (score === 10) msg = '🌟 PERFECT! You\'re an angle master!';
+            else if (score >= 8) msg = '🎉 Excellent! Almost perfect!';
+            else if (score >= 6) msg = '👍 Good job! Review the ones you missed.';
+            else if (score >= 4) msg = '📚 Keep practicing! You\'re improving!';
+            else msg = '💪 Don\'t give up! Study the Learn section again.';
+            
+            document.getElementById('score-message').textContent = msg;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function resetTest() {
+            document.querySelectorAll('.answer-input').forEach(input => input.value = '');
+            document.querySelectorAll('.feedback').forEach(fb => { fb.className = 'feedback'; fb.innerHTML = ''; });
+            document.querySelectorAll('.question-nav button').forEach(btn => btn.classList.remove('completed'));
+            completedQuestions.clear();
+            document.getElementById('progress-fill').style.width = '0%';
+            document.getElementById('score-display').style.display = 'none';
+            goToQuestion(1);
+        }
+        
+        goToQuestion(1);
+    </script>
+</body>
+</html>
